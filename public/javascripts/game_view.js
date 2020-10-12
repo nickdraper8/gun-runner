@@ -29,9 +29,19 @@ class GameView {
         setTimeout(this.generateObsticles.bind(this), randomTime);
     }
 
+    generateEnemies() {
+        let randomTime = Math.floor(Math.random() * (4000 - 2000 + 1) + 1000);
+
+        if (this.lastTime > 5000) {
+            this.game.addEnemy();
+        }
+        setTimeout(this.generateEnemies.bind(this), randomTime);
+    }
+
     start() {
         this.bindKeyHandlers();
         this.lastTime = 0;
+        this.generateEnemies();
         this.generateObsticles();
         requestAnimationFrame(this.animate.bind(this));
     }

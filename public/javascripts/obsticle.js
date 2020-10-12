@@ -11,10 +11,6 @@ class Obsticle extends MovingObject {
         if (otherObject instanceof Player) {
             console.log("Player collision with obsticle")
             return "gameover"
-        } else if (otherObject instanceof Bullet) { // to remove later, the rest will be used for enemy objects
-            this.remove();
-            otherObject.remove();
-            return true;
         }
         return false;
     };

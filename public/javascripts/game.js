@@ -1,6 +1,7 @@
 const Player = require("./player");
 const Bullet = require("./bullet");
 const Obsticle = require("./obsticle");
+const Enemy = require("./enemy");
 
 class Game {
     constructor() {
@@ -9,6 +10,7 @@ class Game {
         this.bullets = [];
         this.enemies = [];
         this.gameover = false;
+        this.score = 0;
     }
 
     add(object) {
@@ -54,6 +56,10 @@ class Game {
                     const collision = obj1.collideWith(obj2);
                     if (collision === "gameover") {
                         this.gameover = true;
+                    } else if (collision === "enemykill") {
+                        debugger
+                        this.score += 500;
+                        debugger
                     } else if (collision) {
                         return;
                     }
@@ -79,6 +85,15 @@ class Game {
         obsticle.game = this
         this.add(obsticle);
     }
+
+    addEnemy() {
+        const enemy = new Enemy({});
+        
+        let randomYCoord = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+        enemy.pos = [799, randomYCoord]
+        enemy.game = this
+        this.add(enemy);
+    }
     
     allObjects() {
         return [].concat(this.players, this.obsticles, this.enemies, this.bullets);
@@ -92,6 +107,8 @@ class Game {
         this.allObjects().forEach(function(object) {
             object.draw(ctx);
         });
+
+        this.drawScore(ctx);
     };
 
     moveObjects(delta) {
@@ -100,10 +117,18 @@ class Game {
         });
     };
 
+    drawScore(ctx) {
+        // debugger
+        ctx.fillStyle = "black";
+        ctx.font = "bold "+18+"pt Arial";
+        ctx.fillText(`Score: ${this.score}`, 0, 30);
+    }
+
     step(delta) {
         this.moveObjects(delta);
         this.players[0].update();
         this.checkCollisions();
+        this.score += 1;
         // this.checkCollisions();
     };
 }
