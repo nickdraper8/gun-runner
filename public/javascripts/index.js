@@ -1,23 +1,15 @@
 const axios = require('axios');
+const MovingObject = require("./moving_object.js");
+const Player = require("./player.js");
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    let isbn = '0201558025';
-    axios.get(`/books/${isbn}`)
-    .then((response) => {
-        console.log(response); 
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext('2d');
 
-    let query = "grace hopper";
-    axios.get(`/search?string=${query}`)
-    .then((response) => {
-        console.log(response);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-    
+    // START OF TESTING
+    window.ctx = ctx;
+    window.MovingObject = MovingObject;
+    window.Player = Player;
+    // END OF TESTING
 })
