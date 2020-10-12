@@ -1,3 +1,13 @@
+main {
+
+}
+
+main > h1 {
+    text-align: center;
+}
+
 canvas {
+    margin: 0px auto;
     border: 2px solid black;
+    display: block;
 }

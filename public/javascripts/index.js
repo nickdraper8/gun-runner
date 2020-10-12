@@ -1,6 +1,11 @@
 const axios = require('axios');
+const Game = require('./game.js');
+const GameView = require('./game_view');
+
+// START OF TESTING
 const MovingObject = require("./moving_object.js");
 const Player = require("./player.js");
+// END OF TESTING
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -12,4 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.MovingObject = MovingObject;
     window.Player = Player;
     // END OF TESTING
+
+    const game = new Game();
+    new GameView(game, ctx).start();
 })
