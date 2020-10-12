@@ -125,21 +125,21 @@ class Game {
     drawGameOver(ctx) {
         ctx.fillStyle = "black";
         ctx.font = "bold "+28+"pt Arial";
-        ctx.fillText(`GAME OVER`, 280, 130);
+        ctx.fillText(`GAME OVER`, 285, 130);
 
         ctx.fillStyle = "black";
         ctx.font = "bold "+18+"pt Arial";
-        ctx.fillText(`Press 'r' to try again`, 280, 180);
+        ctx.fillText(`Press 'r' to try again`, 285, 180);
     }
 
     drawStartMenu(ctx) {
         ctx.fillStyle = "black";
         ctx.font = "bold "+28+"pt Arial";
-        ctx.fillText(`WELCOME`, 300, 130);
+        ctx.fillText(`WELCOME`, 305, 130);
 
         ctx.fillStyle = "black";
         ctx.font = "bold "+18+"pt Arial";
-        ctx.fillText(`Press 'r' to start running`, 260, 180);
+        ctx.fillText(`Press 'r' to start running`, 265, 180);
     }
 
     step(delta) {

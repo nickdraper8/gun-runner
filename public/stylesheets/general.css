@@ -1,6 +1,6 @@
 main ul {
- margin: 20px auto;
- /* text-align: center; */
+    margin: 20px auto;
+    width: fit-content;
 }
 
 main > h1, main > h2 {
