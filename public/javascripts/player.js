@@ -13,9 +13,9 @@ class Player extends MovingObject {
     update() {
         console.log(`Velocity: ${this.vel}, Position: ${this.pos}`)
         if (this.isFalling) {
-            debugger
+            // debugger
             this.vel[1] = this.vel[1] + (this.vel[1] * .1)
-            debugger
+            // debugger
             if (this.pos[1] >= 200) {
                 this.land()
             }

@@ -57,9 +57,7 @@ class Game {
                     if (collision === "gameover") {
                         this.gameover = true;
                     } else if (collision === "enemykill") {
-                        debugger
                         this.score += 500;
-                        debugger
                     } else if (collision) {
                         return;
                     }
@@ -122,6 +120,16 @@ class Game {
         ctx.fillStyle = "black";
         ctx.font = "bold "+18+"pt Arial";
         ctx.fillText(`Score: ${this.score}`, 0, 30);
+    }
+
+    drawGameOver(ctx) {
+        ctx.fillStyle = "black";
+        ctx.font = "bold "+28+"pt Arial";
+        ctx.fillText(`GAME OVER`, 280, 130);
+
+        ctx.fillStyle = "black";
+        ctx.font = "bold "+18+"pt Arial";
+        ctx.fillText(`Press 'r' to try again`, 280, 180);
     }
 
     step(delta) {

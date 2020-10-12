@@ -14,7 +14,7 @@ class Enemy extends MovingObject {
         } else if (otherObject instanceof Bullet) { // to remove later, the rest will be used for enemy objects
             this.remove();
             otherObject.remove();
-            debugger
+            // debugger
             return "enemykill";
         }
         return false;

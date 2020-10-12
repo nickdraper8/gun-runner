@@ -30,10 +30,10 @@ class MovingObject {
 
     isCollidedWith(otherObject) {
         let r1 = {
-            top: this.pos[1] + 10,
-            left: this.pos[0] + 10,
-            bottom: this.pos[1] + this.height - 10,
-            right: this.pos[0] + this.width- 10
+            top: this.pos[1] + 5,
+            left: this.pos[0] + 5,
+            bottom: this.pos[1] + this.height - 5,
+            right: this.pos[0] + this.width - 5
         }
 
         let r2 = {

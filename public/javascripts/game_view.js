@@ -56,7 +56,10 @@ class GameView {
     
             // every call to animate requests causes another call to animate
             requestAnimationFrame(this.animate.bind(this));
+        } else {
+            this.game.drawGameOver(this.ctx)
         }
+        
     }
 }
 
