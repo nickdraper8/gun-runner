@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Player = Player;
     // END OF TESTING
 
+    const game = new Game();
+    new GameView(game, ctx).showStartMenu(ctx);
+
     document.addEventListener('keydown', (e) => {
             // e.preventDefault();
             console.log(e.code);

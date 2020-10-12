@@ -132,6 +132,16 @@ class Game {
         ctx.fillText(`Press 'r' to try again`, 280, 180);
     }
 
+    drawStartMenu(ctx) {
+        ctx.fillStyle = "black";
+        ctx.font = "bold "+28+"pt Arial";
+        ctx.fillText(`WELCOME`, 300, 130);
+
+        ctx.fillStyle = "black";
+        ctx.font = "bold "+18+"pt Arial";
+        ctx.fillText(`Press 'r' to start running`, 260, 180);
+    }
+
     step(delta) {
         this.moveObjects(delta);
         this.players[0].update();
