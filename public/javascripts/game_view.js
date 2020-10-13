@@ -31,6 +31,12 @@ class GameView {
         this.game.addObsticle();
         setTimeout(this.generateObsticles.bind(this), randomTime);
     }
+    
+    generateFloorTiles() {
+
+        this.game.addFloorTile();
+        setTimeout(this.generateFloorTiles.bind(this), 70);
+    }
 
     generateEnemies() {
         let randomTime = Math.floor(Math.random() * (4000 - 2000 + 1) + 1000);
@@ -44,8 +50,12 @@ class GameView {
     start() {
         this.bindKeyHandlers();
         this.lastTime = 0;
+        // this.generateFloorTiles();
         this.generateEnemies();
         this.generateObsticles();
+        
+        document.getElementById("background-gif").src = "/images/winterbackground.gif"
+
         requestAnimationFrame(this.animate.bind(this));
     }
 
@@ -64,6 +74,7 @@ class GameView {
             // every call to animate requests causes another call to animate
             requestAnimationFrame(this.animate.bind(this));
         } else {
+            document.getElementById("background-gif").src = "/images/winterbackground_still.gif"
             this.game.drawGameOver(this.ctx)
         }
         
