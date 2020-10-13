@@ -1,3 +1,45 @@
+body {
+    font-family: 'Press Start 2P';
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    color: white;
+}
+
+main nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gray;
+    background-image: linear-gradient(#666666, black);
+    color: white;
+    border: 5px solid black;
+    margin-bottom: 30px;
+}
+
+main nav > div {
+    width: 300px;
+    font-size: 13px;
+    margin-left: 25px;
+}
+
+main nav #nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main nav div a {
+    font-size: 27px;
+    margin-bottom: 6px;
+    color: white;
+    transition: .5s
+}
+
+main nav div a:hover {
+    font-size: 30px;
+}
+
 #game-view-container {
     position: relative;
     width: 804px;
@@ -6,25 +48,35 @@
 
 main ul {
     margin: 20px auto;
-    width: fit-content;
+    width: 700px;
 }
 
-main > h1, main > h2 {
+main li {
+    padding: 10px 0px;
+    list-style-type: square;
+}
+
+main > h2 {
     text-align: center;
 }
 
 canvas {
     margin: 0px auto;
-    border: 2px solid black;
+    border: 2px solid rgb(255, 255, 255);
     display: block;
 }
 
-#background-gif {
+.over-canvas {
     position: absolute;
-    z-index: -1;
     left: 0px;
     top: 0px;
     height: 100%;
-    width: 802px;
+    width: 804px;
+    position: absolute;
+}
+
+#background-gif {
+    z-index: -1;
     object-fit: fill;
 }
+

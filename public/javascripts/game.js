@@ -78,9 +78,15 @@ class Game {
         }
     };
 
+    removeAllObjects() {
+        this.allObjects().forEach(object => {
+            this.remove(object)
+        })
+    }
+
     isOutOfBounds(pos) {
-        return (pos[0] < 0) || (pos[1] < 0) ||
-            (pos[0] > 800) || (pos[1] > 300);
+        return (pos[0] < -50) || (pos[1] < 0) ||
+            (pos[0] > 850) || (pos[1] > 300);
     };
 
     addPlayer() {
@@ -167,28 +173,28 @@ class Game {
     drawScore(ctx) {
         // debugger
         ctx.fillStyle = "black";
-        ctx.font = "bold "+18+"pt Arial";
-        ctx.fillText(`Score: ${this.score}`, 0, 30);
+        ctx.font = "bold 18pt Impact";
+        ctx.fillText(`Score: ${this.score}`, 10, 30);
     }
 
     drawGameOver(ctx) {
         ctx.fillStyle = "black";
-        ctx.font = "bold "+28+"pt Arial";
-        ctx.fillText(`GAME OVER`, 285, 130);
+        ctx.font = "bold 28pt Impact";
+        ctx.fillText(`GAME OVER`, 320, 130);
 
         ctx.fillStyle = "black";
-        ctx.font = "bold "+18+"pt Arial";
-        ctx.fillText(`Press 'r' to try again`, 285, 180);
+        ctx.font = "bold 18pt Impact";
+        ctx.fillText(`Press 'r' to try again`, 310, 180);
     }
 
     drawStartMenu(ctx) {
         ctx.fillStyle = "black";
-        ctx.font = "bold "+28+"pt Arial";
-        ctx.fillText(`WELCOME`, 305, 130);
+        ctx.font = "bold 28pt Impact";
+        ctx.fillText(`WELCOME`, 325, 130);
 
         ctx.fillStyle = "black";
-        ctx.font = "bold "+18+"pt Arial";
-        ctx.fillText(`Press 'r' to start running`, 265, 180);
+        ctx.font = "bold 18pt Impact";
+        ctx.fillText(`Press 'r' to start running`, 275, 180);
     }
 
     step(delta) {

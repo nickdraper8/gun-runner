@@ -8,6 +8,10 @@ const Player = require("./player.js");
 // END OF TESTING
 
 const newGame = (ctx) => {
+    document.querySelectorAll(".show").forEach(element => {
+        element.classList.remove("show");
+    })
+
     const game = new Game();
     new GameView(game, ctx).start();
 }
@@ -24,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // END OF TESTING
 
     const game = new Game();
-    new GameView(game, ctx).showStartMenu(ctx);
+    // new GameView(game, ctx).showStartMenu(ctx);
+    new GameView(game, ctx)
 
     document.addEventListener('keydown', (e) => {
             // e.preventDefault();

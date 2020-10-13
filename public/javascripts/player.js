@@ -2,7 +2,7 @@ const AnimatedObject = require ("./animated_object");
 const Bullet = require ("./bullet");
 
 class Player extends AnimatedObject {
-    constructor({ vel = [0,0], pos = [100, 200], color = '#F9421A', height = 60, width = 48, scale = 2}) {
+    constructor({ vel = [0,0], pos = [100, 220], color = '#F9421A', height = 60, width = 48, scale = 2}) {
         super({vel, pos, color, height, width, scale});
 
         this.setupImages()
@@ -23,6 +23,8 @@ class Player extends AnimatedObject {
     }
 
     update() {
+        console.log(`Player POS: ${this.pos}`)
+        console.log(`Player VEL: ${this.vel}`)
         if (this.isFalling) {
             // debugger
             this.vel[1] = this.vel[1] + (this.vel[1] * .1)
@@ -69,7 +71,7 @@ class Player extends AnimatedObject {
         this.isJumping = false;
         this.isFalling = false;
         this.vel = [0,0];
-        this.pos = [100, 200];
+        this.pos = [100, 220];
         this.currentImage = this.runningImg
         this.cycleLoop = [0,1,2,3,4,5];
         this.currentLoopIndex = 0;

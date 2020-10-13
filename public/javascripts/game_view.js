@@ -10,16 +10,18 @@ class GameView {
         const game = this.game;
         
         document.addEventListener('keydown', (e) => {
-            // e.preventDefault();
             console.log(e.code);
             switch (e.code) {
                 case "ArrowUp":
+                    e.preventDefault();
                     player.jump();
                     break
                 case "Space":
+                    e.preventDefault();
                     player.fireBullet();
                     break
                 case "ArrowRight":
+                    e.preventDefault();
                     game.dash();
             }
         })
@@ -50,7 +52,6 @@ class GameView {
     start() {
         this.bindKeyHandlers();
         this.lastTime = 0;
-        // this.generateFloorTiles();
         this.generateEnemies();
         this.generateObsticles();
         
@@ -75,7 +76,7 @@ class GameView {
             requestAnimationFrame(this.animate.bind(this));
         } else {
             document.getElementById("background-gif").src = "/images/winterbackground_still.gif"
-            this.game.drawGameOver(this.ctx)
+            document.getElementById("gameover-screen").classList.add("show");
         }
         
     }

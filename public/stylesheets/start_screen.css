@@ -1,0 +1,69 @@
+#start-screen {
+    z-index: 2;
+    background: #000000b3;
+    border: white solid;
+    top: -4px;
+    left: -4px;
+    width: 806px;
+    height: 306px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#start-screen.show {
+    display: flex;
+}
+
+#start-screen div {
+    width: 600px;
+    text-align: center;
+      
+}
+
+#start-screen #welcome-title {
+    margin-bottom: 40px; 
+    font-size: 20px
+}
+
+#start-screen #welcome-info {
+    font-size: 18px;
+}
+
+#gameover-screen {
+    z-index: 2;
+    background: #000000b3;
+    border: white solid;
+    top: -4px;
+    left: -4px;
+    width: 806px;
+    height: 306px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameover-screen.show {
+    display: flex;
+}
+
+#gameover-screen div {
+    width: 600px;
+    text-align: center;
+      
+}
+
+#gameover-screen #gameover-title {
+    margin-bottom: 40px;
+    font-size: 46px;
+    color: red;
+    letter-spacing: 5px;
+}
+
+#gameover-screen #gameover-info {
+    font-size: 18px;
+}
+
+

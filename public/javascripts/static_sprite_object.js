@@ -18,6 +18,11 @@ class StaticSpriteObject extends MovingObject {
 
     draw(ctx) {
         this.drawFrame(0, 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
+
+        // uncomment below to see hitbox!
+
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height)
     }
 }
 

@@ -1,10 +1,31 @@
-const MovingObject = require("./moving_object");
+const StaticSpriteObject = require("./static_sprite_object");
 const Player = require("./player");
-const Bullet = require("./bullet");
 
-class Obsticle extends MovingObject {
-    constructor({ pos = [799, 160], vel = [-10,0], color = '#FB921C', height = 100, width = 50}) {
-        super({pos, vel, color, height, width});
+class Obsticle extends StaticSpriteObject {
+    constructor({ pos = [799, 180], vel = [-10,0], color = '#FB921C', height = 100, width = 40, scale = .15}) {
+        super({pos, vel, color, height, width, scale});
+
+        this.setupImages();
+        this.cycleLoop = [0];
+
+        this.spriteHeight = 900;
+        this.spriteWidth = 800;
+
+        this.scale = scale;
+
+        this.scaledHeight = this.scale * this.spriteHeight;
+        this.scaledWidth = this.scale * this.spriteWidth;
+
+        this.xOffset = 52;
+        this.yOffset = 20;
+
+    }
+
+    setupImages() {
+        this.treeImg = new Image();
+        this.treeImg.src = "/images/obsticle.png";
+
+        this.currentImage = this.treeImg
     }
 
     collideWith(otherObject) {
@@ -14,6 +35,7 @@ class Obsticle extends MovingObject {
         }
         return false;
     };
+
 }
 
 module.exports = Obsticle;
