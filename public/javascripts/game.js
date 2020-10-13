@@ -82,13 +82,6 @@ class Game {
         return player
     }
 
-    addAnimatedObject() {
-        const ao = new AnimatedObject({});
-        ao.game = this;
-        this.add(ao);
-        return ao
-    }
-
     addObsticle() {
         const obsticle = new Obsticle({});
         obsticle.game = this
@@ -117,16 +110,8 @@ class Game {
             object.draw(ctx);
         });
 
-        this.animateObjects(ctx);
-
         this.drawScore(ctx);
     };
-
-    animateObjects(ctx) {
-        this.animatedObjects.forEach(function(object) {
-            object.step(ctx);
-        })
-    }
 
     moveObjects(delta) {
         this.allObjects().forEach(function(object) {
