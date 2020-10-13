@@ -13,6 +13,7 @@ class Game {
         this.animatedObjects = [];
         this.gameover = false;
         this.score = 0;
+        this.dashReady = true;
     }
 
     add(object) {
@@ -118,6 +119,37 @@ class Game {
             object.move(delta);
         });
     };
+
+    dash() {
+        if (this.dashReady) {
+            this.dashReady = false;
+            this.allObjects().forEach(object => {
+                if (object instanceof Player) {
+                    object.vel = [0,0]
+                } else if (object instanceof Obsticle || object instanceof Enemy) {
+                    object.vel = [-20,0]
+                }
+            })
+            setTimeout(this.allowDash.bind(this), 1000);
+            setTimeout(this.stopDash.bind(this), 300);
+        }
+    }
+
+    stopDash() {
+        this.allObjects().forEach(object => {
+            if (object instanceof Player) {
+                if (object.isFalling) {
+                    object.fall();
+                }
+            } else if (object instanceof Obsticle || object instanceof Enemy) {
+                object.vel = [-10,0]
+            }
+        })
+    }
+
+    allowDash() {
+        this.dashReady = true;
+    }
 
     drawScore(ctx) {
         // debugger

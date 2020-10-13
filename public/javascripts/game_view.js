@@ -7,6 +7,7 @@ class GameView {
 
     bindKeyHandlers() {
         const player = this.player;
+        const game = this.game;
         
         document.addEventListener('keydown', (e) => {
             // e.preventDefault();
@@ -18,6 +19,8 @@ class GameView {
                 case "Space":
                     player.fireBullet();
                     break
+                case "ArrowRight":
+                    game.dash();
             }
         })
     }
