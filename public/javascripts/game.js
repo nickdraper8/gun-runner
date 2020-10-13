@@ -183,7 +183,6 @@ class Game {
         this.players[0].update();
         this.checkCollisions();
         this.score += 1;
-        // this.checkCollisions();
     };
 }
 

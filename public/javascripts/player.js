@@ -2,16 +2,24 @@ const AnimatedObject = require ("./animated_object");
 const Bullet = require ("./bullet");
 
 class Player extends AnimatedObject {
-    constructor({ vel = [0,0], pos = [100, 200], color = '#F9421A', height = 60, width = 48}) {
-        super({vel, pos, color, height, width});
+    constructor({ vel = [0,0], pos = [100, 200], color = '#F9421A', height = 60, width = 48, scale = 2}) {
+        super({vel, pos, color, height, width, scale});
 
         this.setupImages()
+        this.cycleLoop = [0,1,2,3,4,5];
 
         this.isJumping = false;
         this.isFalling = false;
         this.isReloading = false;
 
-        this.cycleLoop = [0,1,2,3,4,5];
+        this.spriteHeight = 60;
+        this.spriteWidth = 48;
+
+        this.scaledHeight = this.scale * this.spriteHeight;
+        this.scaledWidth = this.scale * this.spriteWidth;
+
+        this.xOffset = 15;
+        this.yOffset = 10;
     }
 
     update() {
@@ -61,6 +69,7 @@ class Player extends AnimatedObject {
         this.isJumping = false;
         this.isFalling = false;
         this.vel = [0,0];
+        this.pos = [100, 200];
         this.currentImage = this.runningImg
         this.cycleLoop = [0,1,2,3,4,5];
         this.currentLoopIndex = 0;
