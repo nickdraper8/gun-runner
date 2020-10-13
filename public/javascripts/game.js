@@ -2,6 +2,7 @@ const Player = require("./player");
 const Bullet = require("./bullet");
 const Obsticle = require("./obsticle");
 const Enemy = require("./enemy");
+const FloorTile = require("./floor_tile");
 const AnimatedObject = require("./animated_object");
 
 class Game {
@@ -10,6 +11,7 @@ class Game {
         this.players = [];
         this.bullets = [];
         this.enemies = [];
+        this.floorTiles = [];
         this.animatedObjects = [];
         this.gameover = false;
         this.score = 0;
@@ -27,6 +29,8 @@ class Game {
             this.enemies.push(object);
         } else if (object instanceof AnimatedObject) {
             this.animatedObjects.push(object);
+        } else if (object instanceof FloorTile) {
+            this.floorTiles.push(object);
         } else {
             throw new Error("unknown type of object");
         }
@@ -45,6 +49,9 @@ class Game {
         } else if (object instanceof Enemy) {
             this.enemies.splice(this.enemies.indexOf(object), 1);
             console.log("Enemy Removed");
+        } else if (object instanceof FloorTile) {
+            this.floorTiles.splice(this.floorTiles.indexOf(object), 1);
+            console.log("FloorTile Removed");
         } else {
             throw new Error("unknown type of object");
         }
@@ -97,14 +104,20 @@ class Game {
         enemy.game = this
         this.add(enemy);
     }
+
+    addFloorTile() {
+        const floorTile = new FloorTile({});
+        floorTile.game = this;
+        this.add(floorTile);
+    }
     
     allObjects() {
-        return [].concat(this.players, this.obsticles, this.enemies, this.bullets, this.animatedObjects);
+        return [].concat(this.players, this.floorTiles, this.obsticles, this.enemies, this.bullets, this.animatedObjects);
     };
 
     draw(ctx) {
         ctx.clearRect(0, 0, 800, 300);
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#ffffff00';
         ctx.fillRect(0, 0, 800, 300);
 
         this.allObjects().forEach(function(object) {
