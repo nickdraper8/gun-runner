@@ -104,7 +104,7 @@ class Game {
 
     draw(ctx) {
         ctx.clearRect(0, 0, 800, 300);
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#ffffff00';
         ctx.fillRect(0, 0, 800, 300);
 
         this.allObjects().forEach(function(object) {

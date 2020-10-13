@@ -1,3 +1,7 @@
+#game-view-container {
+    position: relative;
+}
+
 main ul {
     margin: 20px auto;
     width: fit-content;
@@ -11,4 +15,14 @@ canvas {
     margin: 0px auto;
     border: 2px solid black;
     display: block;
+}
+
+#background-gif {
+    position: absolute;
+    z-index: -1;
+    left: 293px;
+    top: 0px;
+    height: 100%;
+    width: 800px;
+    object-fit: cover;
 }
