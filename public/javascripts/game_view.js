@@ -3,6 +3,7 @@ class GameView {
         this.game = game;
         this.ctx = ctx;
         this.player = this.game.addPlayer()
+        this.animatedObject = this.game.addAnimatedObject();
     }
 
     bindKeyHandlers() {

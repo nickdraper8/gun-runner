@@ -2,6 +2,7 @@ const Player = require("./player");
 const Bullet = require("./bullet");
 const Obsticle = require("./obsticle");
 const Enemy = require("./enemy");
+const AnimatedObject = require("./animated_object");
 
 class Game {
     constructor() {
@@ -9,6 +10,7 @@ class Game {
         this.players = [];
         this.bullets = [];
         this.enemies = [];
+        this.animatedObjects = [];
         this.gameover = false;
         this.score = 0;
     }
@@ -22,6 +24,8 @@ class Game {
             this.obsticles.push(object);
         } else if (object instanceof Enemy) {
             this.enemies.push(object);
+        } else if (object instanceof AnimatedObject) {
+            this.animatedObjects.push(object);
         } else {
             throw new Error("unknown type of object");
         }
@@ -78,6 +82,13 @@ class Game {
         return player
     }
 
+    addAnimatedObject() {
+        const ao = new AnimatedObject({});
+        ao.game = this;
+        this.add(ao);
+        return ao
+    }
+
     addObsticle() {
         const obsticle = new Obsticle({});
         obsticle.game = this
@@ -94,7 +105,7 @@ class Game {
     }
     
     allObjects() {
-        return [].concat(this.players, this.obsticles, this.enemies, this.bullets);
+        return [].concat(this.players, this.obsticles, this.enemies, this.bullets, this.animatedObjects);
     };
 
     draw(ctx) {
@@ -106,8 +117,16 @@ class Game {
             object.draw(ctx);
         });
 
+        this.animateObjects(ctx);
+
         this.drawScore(ctx);
     };
+
+    animateObjects(ctx) {
+        this.animatedObjects.forEach(function(object) {
+            object.step(ctx);
+        })
+    }
 
     moveObjects(delta) {
         this.allObjects().forEach(function(object) {
