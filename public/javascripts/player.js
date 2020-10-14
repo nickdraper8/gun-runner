@@ -23,8 +23,8 @@ class Player extends AnimatedObject {
     }
 
     update() {
-        console.log(`Player POS: ${this.pos}`)
-        console.log(`Player VEL: ${this.vel}`)
+        // console.log(`Player POS: ${this.pos}`)
+        // console.log(`Player VEL: ${this.vel}`)
         if (this.isFalling) {
             // debugger
             this.vel[1] = this.vel[1] + (this.vel[1] * .1)

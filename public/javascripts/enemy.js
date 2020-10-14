@@ -30,7 +30,7 @@ class Enemy extends AnimatedObject {
 
     collideWith(otherObject) {
         if (otherObject instanceof Player) {
-            console.log("Player collision with obsticle")
+            console.log("Player collision with enemy")
             return "gameover"
         } else if (otherObject instanceof Bullet) {
             this.remove();

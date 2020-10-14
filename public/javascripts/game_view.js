@@ -33,12 +33,6 @@ class GameView {
         this.game.addObsticle();
         setTimeout(this.generateObsticles.bind(this), randomTime);
     }
-    
-    generateFloorTiles() {
-
-        this.game.addFloorTile();
-        setTimeout(this.generateFloorTiles.bind(this), 70);
-    }
 
     generateEnemies() {
         let randomTime = Math.floor(Math.random() * (4000 - 2000 + 1) + 1000);
