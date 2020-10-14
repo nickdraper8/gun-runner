@@ -30,7 +30,7 @@ class Obsticle extends StaticSpriteObject {
 
     collideWith(otherObject) {
         if (otherObject instanceof Player) {
-            console.log("Player collision with obsticle")
+            // console.log("Player collision with obsticle")
             return "gameover"
         }
         return false;

@@ -10,7 +10,7 @@ class GameView {
         const game = this.game;
         
         document.addEventListener('keydown', (e) => {
-            console.log(e.code);
+            // console.log(e.code);
             switch (e.code) {
                 case "ArrowUp":
                     e.preventDefault();
