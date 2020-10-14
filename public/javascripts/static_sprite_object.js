@@ -10,14 +10,14 @@ class StaticSpriteObject extends MovingObject {
 
     }
 
-    drawFrame(frameX, frameY, canvasX, canvasY) {
+    drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
         ctx.drawImage(this.currentImage,
                         frameX * this.spriteWidth, frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight,
                         canvasX, canvasY, this.scaledWidth, this.scaledHeight);
     }
 
     draw(ctx) {
-        this.drawFrame(0, 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
+        this.drawFrame(ctx, 0, 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
 
         // uncomment below to see hitbox!
 

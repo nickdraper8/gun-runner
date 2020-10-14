@@ -64,6 +64,18 @@ class GameView {
         this.game.drawStartMenu(ctx);
     }
 
+    handleHighscore() {
+        var highScore = localStorage.getItem('highScore') || 0;
+
+        if (this.game.score > highScore) {
+            highScore = parseInt(this.game.score);
+            localStorage.setItem('highScore', highScore);
+            document.getElementById("high-score").innerHTML = `Highscore: ${highScore}`;
+            return true
+        }
+        return false;
+    }
+
     animate(time) {
         if (!this.game.gameover) {
             const timeDelta = time - this.lastTime;
@@ -75,8 +87,17 @@ class GameView {
             // every call to animate requests causes another call to animate
             requestAnimationFrame(this.animate.bind(this));
         } else {
+            document.querySelectorAll("#game-music")[0].pause();
             document.getElementById("background-gif").src = "/images/winterbackground_still.gif"
             document.getElementById("gameover-screen").classList.add("show");
+            // debugger
+            if (this.handleHighscore()) {
+                document.getElementById("high-score-alert").innerHTML = `NEW HIGHSCORE: ${this.game.score} points`;
+                document.getElementById("victory").play();
+            } else {
+                document.getElementById("high-score-alert").innerHTML = ``;
+                document.getElementById("game-over").play();
+            }
         }
         
     }

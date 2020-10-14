@@ -130,7 +130,7 @@ class Game {
             object.draw(ctx);
         });
 
-        this.drawScore(ctx);
+        this.drawScore();
     };
 
     moveObjects(delta) {
@@ -141,6 +141,7 @@ class Game {
 
     dash() {
         if (this.dashReady) {
+            document.getElementById("dash").play();
             this.dashReady = false;
             this.allObjects().forEach(object => {
                 if (object instanceof Player) {
@@ -170,11 +171,13 @@ class Game {
         this.dashReady = true;
     }
 
-    drawScore(ctx) {
-        // debugger
-        ctx.fillStyle = "black";
-        ctx.font = "bold 18pt Impact";
-        ctx.fillText(`Score: ${this.score}`, 10, 30);
+    drawScore() {
+        
+        document.getElementById("current-score").innerHTML = `Score: ${this.score}`
+
+        // ctx.fillStyle = "black";
+        // ctx.font = "bold 18pt Impact";
+        // ctx.fillText(`Score: ${this.score}`, 10, 30);
     }
 
     drawGameOver(ctx) {
