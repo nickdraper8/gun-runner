@@ -54,3 +54,32 @@ There are many features I would like to implement in the future. Some anticipate
 * Leaderboard (local and global)
 * Pickup different weapons that have different bullet properties (shotgun/missle launcher)
 * Tiered levels, meaning the player can jump up onto platforms and clime vertically.
+
+## Assets Used
+Here is a list of recourses I used and the sources of where they came from:
+Gun Runner Resources Used
+
+### Sprites and Art:
+- Enemy sprites
+    - https://imonk.itch.io/plasma-drone
+- Player sprites
+    - https://secrethideout.itch.io/team-wars-platformer-battle
+- Background
+    - https://www.pinterest.com/pin/466896686362782654/
+- Obstacle sprites
+    - https://www.pixilart.com/art/slay-the-king-tree-sprite-not-mine-came-from-a-stamp-a8230269374df1
+- Gun UI icon
+    - https://kaylousberg.itch.io/
+- Lightning Bolt UI Icon
+    - http://pixelartmaker.com/art/a9f00c9246bf3dd
+
+### Icons
+- https://fontawesome.com/
+
+### Sounds
+- Victory horns
+    - https://freesound.org/people/FunWithSound/sounds/456966/
+- Enemy Explosion
+    - https://www.freesoundeffects.com/free-sounds/explosion-10070
+- All others
+    - Royalty free music from https://www.fesliyanstudios.com

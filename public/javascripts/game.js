@@ -34,8 +34,8 @@ class Game {
 
     remove(object) {
         if (object instanceof Player) {
-            this.players.splice(this.players.indexOf(object), 1);
-            console.log("Player Removed");
+            // this.players.splice(this.players.indexOf(object), 1);
+            // console.log("Player Removed");
         } else if (object instanceof Bullet) {
             this.bullets.splice(this.bullets.indexOf(object), 1);
             // console.log("Bullet Removed");
@@ -203,6 +203,13 @@ class Game {
         this.moveObjects(delta);
         this.players[0].update();
         this.checkCollisions();
+
+        // this.enemies.forEach(enemy => {
+        //     if (enemy.removeDestroyedEnemy()) {
+        //         this.remove(enemy);
+        //     }
+        // })
+
         this.score += 1;
     };
 }
