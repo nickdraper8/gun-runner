@@ -66,4 +66,58 @@
     font-size: 18px;
 }
 
+#mute-btn {
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10;
+    position: absolute;
+    font-family: 'Press Start 2P';
+    color: white;
+    border: none;
+    top: 10px;
+    left: 735px;
+}
+
+#mute-btn:hover {
+    cursor: pointer;
+    letter-spacing: 1px;
+    left: 733px;
+}
+
+#mute-btn:active {
+    color: black;
+}
+
+#mute-btn:focus {
+    outline: none;
+}
+
+#mute-btn.muted {
+    left: 709px
+}
+
+#mute-btn.muted:hover {
+    left: 707px
+}
+
+.score {
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10;
+    position: absolute;
+    font-family: 'Press Start 2P';
+    color: white;
+    border: none;
+    top: 10px;
+    left: 10px;
+}
+
+#high-score {
+    left: 300px;
+}
+
+#high-score-alert {
+    font-size: 21px;
+    margin-bottom: 30px;
+    color: yellow;
+}
+
 

@@ -50,8 +50,8 @@ class Player extends AnimatedObject {
     }
 
     jump() {
-        // debugger
         if (!this.isJumping) {
+            document.getElementById("jump").play();
             this.isJumping = true
             this.vel = [0,-17]
             this.currentImage = this.jumpingImg
@@ -78,11 +78,14 @@ class Player extends AnimatedObject {
     }
 
     reload() {
+        document.getElementById("gunshot").pause();
+        document.getElementById("gunshot").currentTime = 0;
         this.isReloading = false;
     }
 
     fireBullet() {
         if (!this.isReloading) {
+            document.getElementById("gunshot").play();
             let bulletPos = [this.pos[0], this.pos[1] + 25];
             const bullet = new Bullet({});
             bullet.pos = bulletPos;

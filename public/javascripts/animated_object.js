@@ -12,7 +12,7 @@ class AnimatedObject extends MovingObject {
         this.frameCount = 0;
     }
 
-    drawFrame(frameX, frameY, canvasX, canvasY) {
+    drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
         ctx.drawImage(this.currentImage,
                         frameX * this.spriteWidth, frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight,
                         canvasX, canvasY, this.scaledWidth, this.scaledHeight);
@@ -20,7 +20,7 @@ class AnimatedObject extends MovingObject {
 
     draw(ctx) {
         this.frameCount += 1;
-        this.drawFrame(this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
+        this.drawFrame(ctx, this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
         if (this.frameCount < 10){
             return
         } else {

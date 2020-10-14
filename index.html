@@ -12,6 +12,13 @@
   <body>
     <main id='main'>
 
+      <audio id="jump" src="/sounds/jump.mp3"></audio>
+      <audio id="dash" src="/sounds/dash.mp3"></audio>
+      <audio id="game-over" src="/sounds/game_over.mp3"></audio>
+      <audio id="gunshot" src="/sounds/gunshot.mp3"></audio>
+      <audio id="victory" src="/sounds/victory.mp3"></audio>
+      <audio id="game-music" src="/sounds/game_music.mp3" loop="true" paused="false"></audio>
+
       <nav>
         <div>Created by Nick Draper</div>
         <h1>Gun Runner</h1>
@@ -29,8 +36,12 @@
         </div>
         <div id="gameover-screen" class="over-canvas">
           <div id="gameover-title">GAME OVER</div>
+          <div id="high-score-alert"></div>
           <div id="gameover-info">Press 'r' to play a new game</div>
         </div>
+        <div id="current-score" class="score">Score: </div>
+        <div id="high-score" class="score">Highscore: 0</div>
+        <button id="mute-btn">MUTE</button>
         <canvas id="myCanvas" width="800" height="300"></canvas>
       </div>
       <h2>Directions and Controls:</h2>
