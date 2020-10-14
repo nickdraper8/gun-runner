@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/general.css" type="text/css">
     <link rel="stylesheet" href="/stylesheets/start_screen.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/ui.css" type="text/css">
     <script type="text/javascript" src="./bundle.js"></script>
   </head>
   <body>
@@ -30,7 +31,7 @@
       </nav>
       <div id="game-view-container">
         <img id="background-gif" class="over-canvas" src="/images/winterbackground.gif" alt="background-gif">
-        <div id="start-screen" class="over-canvas show">
+        <div id="start-screen" class="over-canvas">
           <div id="welcome-title">Welcome to GUN RUNNER</div>
           <div id="welcome-info">Read the directions below, then press 'r' to start running</div>
         </div>
@@ -42,6 +43,20 @@
         <div id="current-score" class="score">Score: </div>
         <div id="high-score" class="score">Highscore: 0</div>
         <button id="mute-btn">MUTE</button>
+
+              <div id="ui-bars-container"> 
+                <div id="reload-bar-outer" class="outer-ui-bar">
+                  <img id="ui-gun-icon" src="/images/gun.png">
+                  <div id="reload-bar-inner" class="inner-ui-bar"></div>
+                  <div id="reload-bar-inner-green" class="inner-ui-bar"></div>
+                </div>
+                <div id="boost-bar-outer" class="outer-ui-bar">
+                  <img src="/images/boost.png">
+                  <div id="boost-bar-inner" class="inner-ui-bar"></div>
+                  <div id="boost-bar-inner-green" class="inner-ui-bar"></div>
+                </div>
+              </div>
+
         <canvas id="myCanvas" width="800" height="300"></canvas>
       </div>
       <h2>Directions and Controls:</h2>

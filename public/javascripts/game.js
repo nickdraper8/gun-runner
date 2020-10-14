@@ -150,6 +150,11 @@ class Game {
                     object.vel = [-20,0]
                 }
             })
+
+            document.getElementById("boost-bar-inner-green").classList.remove("inner-boost-bar-fill");
+            document.getElementById("boost-bar-inner-green").classList.add("inner-bar-to-0");
+
+            setTimeout(this.animateDashBar.bind(this), 100)
             setTimeout(this.allowDash.bind(this), 1000);
             setTimeout(this.stopDash.bind(this), 300);
         }
@@ -168,7 +173,14 @@ class Game {
     }
 
     allowDash() {
+        document.getElementById("dash").pause();
+        document.getElementById("dash").currentTime = 0;
         this.dashReady = true;
+    }
+
+    animateDashBar() {
+        document.getElementById("boost-bar-inner-green").classList.remove("inner-bar-to-0");
+        document.getElementById("boost-bar-inner-green").classList.add("inner-boost-bar-fill");
     }
 
     drawScore() {

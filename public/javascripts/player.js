@@ -5,7 +5,7 @@ class Player extends AnimatedObject {
     constructor({ vel = [0,0], pos = [100, 220], color = '#F9421A', height = 60, width = 48, scale = 2}) {
         super({vel, pos, color, height, width, scale});
 
-        this.setupImages()
+        this.setupImages();
         this.cycleLoop = [0,1,2,3,4,5];
 
         this.isJumping = false;
@@ -80,7 +80,13 @@ class Player extends AnimatedObject {
     reload() {
         document.getElementById("gunshot").pause();
         document.getElementById("gunshot").currentTime = 0;
+        
         this.isReloading = false;
+    }
+
+    animateReloadBar() {
+        document.getElementById("reload-bar-inner-green").classList.remove("inner-bar-to-0");
+        document.getElementById("reload-bar-inner-green").classList.add("inner-reload-bar-fill");
     }
 
     fireBullet() {
@@ -92,6 +98,11 @@ class Player extends AnimatedObject {
             bullet.game = this.game;
             this.game.add(bullet);
             this.isReloading = true;
+
+            document.getElementById("reload-bar-inner-green").classList.remove("inner-reload-bar-fill");
+            document.getElementById("reload-bar-inner-green").classList.add("inner-bar-to-0");
+            
+            setTimeout(this.animateReloadBar.bind(this), 100);
             setTimeout(this.reload.bind(this), 1000);
         }
     };
