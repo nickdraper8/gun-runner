@@ -1,0 +1,62 @@
+#ui-bars-container {
+    position: absolute;
+    display: flex;
+    top: 260px;
+    left: 575px;
+}
+
+#ui-bars-container img {
+    height: 31px;
+    width: 38px;
+}
+
+#ui-bars-container #ui-gun-icon {
+    height: 17px;
+    width: 25px;
+    padding-top: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.outer-ui-bar {
+    background-color: #cccccc;
+    border: 3px solid black;
+    height: 30px;
+    width: 100px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.inner-ui-bar {
+    height: 10px;
+    width: 56px;
+    background-color: #f90000;
+    position: absolute;
+    top: 7px;
+    left: 34px;
+    border: 3px solid black;
+}
+
+#boost-bar-inner-green {
+    background-color: rgb(0, 236, 0);
+}
+
+#reload-bar-inner-green {
+    background-color: rgb(0, 236, 0);
+}
+
+.inner-bar-to-0 {
+    width: 0;
+}
+
+.inner-reload-bar-fill {
+    width: 56px;
+    transition: 1s;
+}
+
+.inner-boost-bar-fill {
+    width: 56px;
+    transition: 1s;
+}
+
+
