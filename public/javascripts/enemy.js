@@ -18,6 +18,8 @@ class Enemy extends AnimatedObject {
         this.xOffset = 10;
         this.yOffset = 5;
 
+        this.fps = 2;
+
     }
 
     setupImages() {
@@ -41,7 +43,7 @@ class Enemy extends AnimatedObject {
                 this.currentImage = this.explodeImg;
                 this.spriteHeight = 190;
                 this.spriteWidth = 190;
-                this.cycleLoop = [0,1,2,3,4,5];
+                // this.cycleLoop = [0,1,2,3,4,5];
                 this.currentLoopIndex = 0;
                 this.scaledHeight = this.scale * this.spriteHeight;
                 this.scaledWidth = this.scale * this.spriteWidth;

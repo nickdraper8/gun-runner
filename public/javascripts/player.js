@@ -2,10 +2,9 @@ const AnimatedObject = require ("./animated_object");
 const Bullet = require ("./bullet");
 
 class Player extends AnimatedObject {
-    constructor({ vel = [0,0], pos = [100, 220], color = '#F9421A', height = 60, width = 48, scale = 2}) {
-        super({vel, pos, color, height, width, scale});
-
-        this.setupImages();
+    constructor({vel = [0,0], pos = [100, 220], height = 60, width = 48, scale = 2}) {
+        super({vel, pos, height, width, scale});
+        // this.setupImages();
         this.cycleLoop = [0,1,2,3,4,5];
 
         this.isJumping = false;
@@ -18,8 +17,11 @@ class Player extends AnimatedObject {
         this.scaledHeight = this.scale * this.spriteHeight;
         this.scaledWidth = this.scale * this.spriteWidth;
 
+        this.fps = 10;
+
         this.xOffset = 15;
         this.yOffset = 10;
+
     }
 
     update() {
@@ -42,9 +44,9 @@ class Player extends AnimatedObject {
 
     setupImages() {
         this.runningImg = new Image();
-        this.runningImg.src = "/images/Gunner_Red_Run.png";
+        this.runningImg.src = `/images/Gunner_${this.color}_Run.png`;
         this.jumpingImg = new Image();
-        this.jumpingImg.src = "/images/Gunner_Red_Jump.png";
+        this.jumpingImg.src = `/images/Gunner_${this.color}_Jump.png`;
 
         this.currentImage = this.runningImg
     }

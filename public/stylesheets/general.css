@@ -81,3 +81,39 @@ canvas {
     object-fit: fill;
 }
 
+#player-colors {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    margin: 0px auto;
+}
+
+#player-colors > div {
+    padding: 5px 10px;
+    border: 3px black solid;
+}
+
+#player-colors > div:hover {
+    cursor: pointer;
+}
+
+#player-color-red {
+    color: red;
+}
+
+#player-color-blue {
+    color: blue;
+}
+
+#player-color-green {
+    color: green;
+}
+
+#player-color-yellow {
+    color: yellow;
+}
+
+#player-colors > div.selected {
+    border: white 3px solid;
+    cursor: default
+}

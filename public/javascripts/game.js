@@ -82,9 +82,14 @@ class Game {
             (pos[0] > 850) || (pos[1] > 300);
     };
 
-    addPlayer() {
+    addPlayer(color) {
+        if (!color) {
+            color = "Red"
+        }
         const player = new Player({});
-        player.game = this
+        player.color = color;
+        player.setupImages();
+        player.game = this;
         this.add(player);
         return player
     }

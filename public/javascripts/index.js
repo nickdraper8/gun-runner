@@ -13,9 +13,10 @@ const newGame = (ctx) => {
     document.getElementById("victory").pause();
     document.getElementById("victory").currentTime = 0;
 
+    let color = localStorage.getItem('playerColor') || undefined;
 
     const game = new Game();
-    new GameView(game, ctx).start();
+    new GameView(game, ctx, color).start();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,7 +46,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.highScore) {
         document.getElementById("high-score").innerHTML = `Highscore: ${localStorage.highScore}`;
     }
+
+    const redColorBtn = document.getElementById("player-color-red");
+    const blueColorBtn = document.getElementById("player-color-blue");
+    const greenColorBtn = document.getElementById("player-color-green");
+    const yellowColorBtn = document.getElementById("player-color-yellow");
     
+    redColorBtn.addEventListener("click", () => {
+        if (!redColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            redColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Red");
+        }
+    })
+    blueColorBtn.addEventListener("click", () => {
+        if (!blueColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            blueColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Blue");
+        }
+    })
+    greenColorBtn.addEventListener("click", () => {
+        if (!greenColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            greenColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Green");
+        }
+    })
+    yellowColorBtn.addEventListener("click", () => {
+        if (!yellowColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            yellowColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Yellow");
+        }
+    })
 
     const game = new Game();
     new GameView(game, ctx)

@@ -1,8 +1,8 @@
 class GameView {
-    constructor(game, ctx) {
+    constructor(game, ctx, color) {
         this.game = game;
         this.ctx = ctx;
-        this.player = this.game.addPlayer()
+        this.player = this.game.addPlayer(color)
     }
 
     bindKeyHandlers() {

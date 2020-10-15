@@ -381,10 +381,9 @@ const AnimatedObject = __webpack_require__ (3);
 const Bullet = __webpack_require__ (5);
 
 class Player extends AnimatedObject {
-    constructor({ vel = [0,0], pos = [100, 220], color = '#F9421A', height = 60, width = 48, scale = 2}) {
-        super({vel, pos, color, height, width, scale});
-
-        this.setupImages();
+    constructor({vel = [0,0], pos = [100, 220], height = 60, width = 48, scale = 2}) {
+        super({vel, pos, height, width, scale});
+        // this.setupImages();
         this.cycleLoop = [0,1,2,3,4,5];
 
         this.isJumping = false;
@@ -397,8 +396,11 @@ class Player extends AnimatedObject {
         this.scaledHeight = this.scale * this.spriteHeight;
         this.scaledWidth = this.scale * this.spriteWidth;
 
+        this.fps = 10;
+
         this.xOffset = 15;
         this.yOffset = 10;
+
     }
 
     update() {
@@ -421,9 +423,9 @@ class Player extends AnimatedObject {
 
     setupImages() {
         this.runningImg = new Image();
-        this.runningImg.src = "/images/Gunner_Red_Run.png";
+        this.runningImg.src = `/images/Gunner_${this.color}_Run.png`;
         this.jumpingImg = new Image();
-        this.jumpingImg.src = "/images/Gunner_Red_Jump.png";
+        this.jumpingImg.src = `/images/Gunner_${this.color}_Jump.png`;
 
         this.currentImage = this.runningImg
     }
@@ -622,7 +624,7 @@ class AnimatedObject extends MovingObject {
     draw(ctx) {
         this.frameCount += 1;
         this.drawFrame(ctx, this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
-        if (this.frameCount < 10){
+        if (this.frameCount < this.fps){
             return
         } else {
             this.frameCount = 0;
@@ -1192,9 +1194,10 @@ const newGame = (ctx) => {
     document.getElementById("victory").pause();
     document.getElementById("victory").currentTime = 0;
 
+    let color = localStorage.getItem('playerColor') || undefined;
 
     const game = new Game();
-    new GameView(game, ctx).start();
+    new GameView(game, ctx, color).start();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1224,7 +1227,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.highScore) {
         document.getElementById("high-score").innerHTML = `Highscore: ${localStorage.highScore}`;
     }
+
+    const redColorBtn = document.getElementById("player-color-red");
+    const blueColorBtn = document.getElementById("player-color-blue");
+    const greenColorBtn = document.getElementById("player-color-green");
+    const yellowColorBtn = document.getElementById("player-color-yellow");
     
+    redColorBtn.addEventListener("click", () => {
+        if (!redColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            redColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Red");
+        }
+    })
+    blueColorBtn.addEventListener("click", () => {
+        if (!blueColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            blueColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Blue");
+        }
+    })
+    greenColorBtn.addEventListener("click", () => {
+        if (!greenColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            greenColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Green");
+        }
+    })
+    yellowColorBtn.addEventListener("click", () => {
+        if (!yellowColorBtn.classList.contains("selected")) {
+            document.getElementsByClassName("selected")[0].classList.remove("selected")
+            yellowColorBtn.classList.add("selected");
+            localStorage.setItem('playerColor', "Yellow");
+        }
+    })
 
     const game = new Game();
     new GameView(game, ctx)
@@ -2220,9 +2256,14 @@ class Game {
             (pos[0] > 850) || (pos[1] > 300);
     };
 
-    addPlayer() {
+    addPlayer(color) {
+        if (!color) {
+            color = "Red"
+        }
         const player = new Player({});
-        player.game = this
+        player.color = color;
+        player.setupImages();
+        player.game = this;
         this.add(player);
         return player
     }
@@ -2458,6 +2499,8 @@ class Enemy extends AnimatedObject {
         this.xOffset = 10;
         this.yOffset = 5;
 
+        this.fps = 2;
+
     }
 
     setupImages() {
@@ -2481,7 +2524,7 @@ class Enemy extends AnimatedObject {
                 this.currentImage = this.explodeImg;
                 this.spriteHeight = 190;
                 this.spriteWidth = 190;
-                this.cycleLoop = [0,1,2,3,4,5];
+                // this.cycleLoop = [0,1,2,3,4,5];
                 this.currentLoopIndex = 0;
                 this.scaledHeight = this.scale * this.spriteHeight;
                 this.scaledWidth = this.scale * this.spriteWidth;
@@ -2535,10 +2578,10 @@ module.exports = Enemy;
 /***/ (function(module, exports) {
 
 class GameView {
-    constructor(game, ctx) {
+    constructor(game, ctx, color) {
         this.game = game;
         this.ctx = ctx;
-        this.player = this.game.addPlayer()
+        this.player = this.game.addPlayer(color)
     }
 
     bindKeyHandlers() {

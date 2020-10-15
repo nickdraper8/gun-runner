@@ -21,7 +21,7 @@ class AnimatedObject extends MovingObject {
     draw(ctx) {
         this.frameCount += 1;
         this.drawFrame(ctx, this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
-        if (this.frameCount < 10){
+        if (this.frameCount < this.fps){
             return
         } else {
             this.frameCount = 0;
