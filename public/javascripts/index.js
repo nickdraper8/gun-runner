@@ -51,6 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const blueColorBtn = document.getElementById("player-color-blue");
     const greenColorBtn = document.getElementById("player-color-green");
     const yellowColorBtn = document.getElementById("player-color-yellow");
+
+    if (localStorage.playerColor) {
+        let color = localStorage.playerColor
+        color = color.toLowerCase();
+        document.getElementById(`player-color-${color}`).classList.add("selected");
+    }
     
     redColorBtn.addEventListener("click", () => {
         if (!redColorBtn.classList.contains("selected")) {

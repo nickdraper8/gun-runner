@@ -17,7 +17,7 @@ class Player extends AnimatedObject {
         this.scaledHeight = this.scale * this.spriteHeight;
         this.scaledWidth = this.scale * this.spriteWidth;
 
-        this.fps = 10;
+        this.fps = 5;
 
         this.xOffset = 15;
         this.yOffset = 10;
@@ -25,7 +25,7 @@ class Player extends AnimatedObject {
     }
 
     update() {
-        // console.log(`Player POS: ${this.pos}`)
+        // console.log(`Player POSrr: ${this.pos}`)
         // console.log(`Player VEL: ${this.vel}`)
         if (this.isFalling) {
             // debugger
