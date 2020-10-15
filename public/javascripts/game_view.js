@@ -50,7 +50,6 @@ class GameView {
         this.generateObsticles();
         
         document.getElementById("background-gif").src = "/images/winterbackground.gif"
-
         requestAnimationFrame(this.animate.bind(this));
     }
 
