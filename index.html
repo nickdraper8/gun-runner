@@ -36,12 +36,35 @@
         <div id="start-screen" class="over-canvas show">
           <div id="welcome-title">Welcome to GUN RUNNER</div>
           <div id="welcome-info">Read the directions below, then press 'r' to start running</div>
+          
         </div>
         <div id="gameover-screen" class="over-canvas">
           <div id="gameover-title">GAME OVER</div>
           <div id="high-score-alert"></div>
           <div id="gameover-info">Press 'r' to play a new game</div>
         </div>
+        <div id="open-menu-btn-container" class="show">
+          <div id="open-color-menu-btn" class="open-menu-btn">Change Color</div>
+          <div id="open-controls-menu-btn" class="open-menu-btn">Info</div>
+        </div>
+        <div id="player-color-select-menu">
+          <h2>Choose Player Color!</h2>
+          <div id="player-colors">
+            <div id="player-color-red">Red</div>
+            <div id="player-color-blue">Blue</div>
+            <div id="player-color-green">Green</div>
+            <div id="player-color-yellow">Yellow</div>
+          </div>
+          <h3 id="exit-colors-menu-btn">Done</h3>
+        </div>
+
+        <div id="controls-menu">
+          <h2>Info</h2>
+          <p>It's your job to help <span style="color: red">Henry</span>, <span style="color: blue">Philip</span>, <span style="color: green">Jean-Pierre</span> and <span style="color: yellow">One-Eyed Moe</span> to safety! After defeating Lord Untak in his arctic lair, the TURBO TEAM must move quick to make an escape back to safety and evade Untak's robotic henchman. See how far you can get!</p>
+          <p>Hint: Kill enemies for extra points!</p>
+          <h3 id="exit-controls-menu-btn">Done</h3>
+        </div>
+
         <div id="current-score" class="score">Score: </div>
         <div id="high-score" class="score">Highscore: 0</div>
         <button id="mute-btn">MUTE</button>
@@ -59,24 +82,22 @@
                 </div>
               </div>
 
+          
         <canvas id="myCanvas" width="800" height="300"></canvas>
       </div>
-      <h2>Choose Player Color!</h2>
-      <div id="player-colors">
-        <div id="player-color-red">Red</div>
-        <div id="player-color-blue">Blue</div>
-        <div id="player-color-green">Green</div>
-        <div id="player-color-yellow">Yellow</div>
+      <h2>Controls:</h2>
+      <div class="control">
+        <div>UP ARROW:</div><div>Jump</div>
       </div>
-      <h2>Directions and Controls:</h2>
-      <ul>
-        <li>Press <strong>'up arrow'</strong>to jump over trees</li>
-        <li>Press <strong>'left arrow'</strong> to dash forward while running or jumping</li>
-        <li>Press <strong>'spacebar'</strong> to fire bullets to destroy pesky flying robot enemies</li>
-        <li>Press <strong>'r'</strong> to reset the game</li>
-        <li>Hint: Shoot enemies for extra points!</li>
-      </ul>
-
+      <div class="control">
+        <div>LEFT ARROW:</div><div>Dash</div>
+      </div>
+      <div class="control">
+        <div>SPACE:</div><div>Fire Weapon</div>
+      </div>
+      <div class="control">
+        <div>R:</div><div>Reset Game</div>
+      </div>
     </main>
   </body>
 </html>

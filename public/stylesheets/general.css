@@ -90,7 +90,7 @@ canvas {
 
 #player-colors > div {
     padding: 5px 10px;
-    border: 3px black solid;
+    border: 3px rgba(0, 0, 0, 0) solid;
 }
 
 #player-colors > div:hover {
@@ -113,7 +113,34 @@ canvas {
     color: yellow;
 }
 
+#player-color-red:hover {
+    color: rgb(252, 67, 67);
+}
+
+#player-color-blue:hover {
+    color: rgb(55, 55, 255);
+}
+
+#player-color-green:hover {
+    color: rgb(3, 180, 3);
+}
+
+#player-color-yellow:hover {
+    color: rgb(255, 255, 138);
+}
+
 #player-colors > div.selected {
     border: white 3px solid;
     cursor: default
+}
+
+.control {
+    margin: 10px auto;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#controls-menu p {
+    line-height: 3;
 }

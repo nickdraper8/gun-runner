@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/public/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 12);
@@ -1227,6 +1227,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.highScore) {
         document.getElementById("high-score").innerHTML = `Highscore: ${localStorage.highScore}`;
     }
+
+    const colorMenuBtn = document.getElementById("open-color-menu-btn");
+    colorMenuBtn.addEventListener("click", () => {
+        document.getElementById("player-color-select-menu").classList.add("show");
+    })
+
+    const controlsMenuBtn = document.getElementById("open-controls-menu-btn");
+    controlsMenuBtn.addEventListener("click", () => {
+        document.getElementById("controls-menu").classList.add("show");
+    })
+
+    const closeColorsMenuBtn = document.getElementById("exit-colors-menu-btn");
+    closeColorsMenuBtn.addEventListener("click", () => {
+        document.getElementById("player-color-select-menu").classList.remove("show");
+    })
+
+    const closeControlsMenuBtn = document.getElementById("exit-controls-menu-btn");
+    closeControlsMenuBtn.addEventListener("click", () => {
+        document.getElementById("controls-menu").classList.remove("show");
+    })
+    
 
     const redColorBtn = document.getElementById("player-color-red");
     const blueColorBtn = document.getElementById("player-color-blue");
@@ -2671,6 +2692,7 @@ class GameView {
             document.querySelectorAll("#game-music")[0].pause();
             document.getElementById("background-gif").src = "./public/images/winterbackground_still.gif"
             document.getElementById("gameover-screen").classList.add("show");
+            document.getElementById("open-menu-btn-container").classList.add("show");
             // debugger
             if (this.handleHighscore()) {
                 document.getElementById("high-score-alert").innerHTML = `NEW HIGHSCORE: ${this.game.score} points`;
