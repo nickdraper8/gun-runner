@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <title>Gun Runner</title>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="icon" href="/images/gun_runner_favicon.png" type="image/png">
+    <link rel="icon" href="./public/images/gun_runner_favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/general.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/start_screen.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/ui.css" type="text/css">
-    <script type="text/javascript" src="bundle.js"></script>
+    <link rel="stylesheet" href="./public/stylesheets/general.css" type="text/css">
+    <link rel="stylesheet" href="./public/stylesheets/start_screen.css" type="text/css">
+    <link rel="stylesheet" href="./public/stylesheets/ui.css" type="text/css">
+    <script type="text/javascript" src="./public/bundle.js"></script>
   </head>
   <body>
     <main id='main'>
 
-      <audio id="jump" src="/sounds/jump.mp3"></audio>
-      <audio id="dash" src="/sounds/dash.mp3"></audio>
-      <audio id="game-over" src="/sounds/game_over.mp3"></audio>
-      <audio id="gunshot" src="/sounds/gunshot.mp3"></audio>
-      <audio id="victory" src="/sounds/victory.mp3"></audio>
-      <audio id="explosion" src="/sounds/explosion.mp3"></audio>
-      <audio id="game-music" src="/sounds/game_music.mp3" loop="true" paused="false"></audio>
+      <audio id="jump" src=".public/sounds/jump.mp3"></audio>
+      <audio id="dash" src=".public/sounds/dash.mp3"></audio>
+      <audio id="game-over" src=".public/sounds/game_over.mp3"></audio>
+      <audio id="gunshot" src=".public/sounds/gunshot.mp3"></audio>
+      <audio id="victory" src=".public/sounds/victory.mp3"></audio>
+      <audio id="explosion" src=".public/sounds/explosion.mp3"></audio>
+      <audio id="game-music" src=".public/sound.publics/game_music.mp3" loop="true" paused="false"></audio>
 
       <nav>
         <div>Created by Nick Draper</div>
@@ -32,7 +32,7 @@
         </div>
       </nav>
       <div id="game-view-container">
-        <img id="background-gif" class="over-canvas" src="/images/winterbackground.gif" alt="background-gif">
+        <img id="background-gif" class="over-canvas" src="./public/images/winterbackground.gif" alt="background-gif">
         <div id="start-screen" class="over-canvas show">
           <div id="welcome-title">Welcome to GUN RUNNER</div>
           <div id="welcome-info">Read the directions below, then press 'r' to start running</div>
@@ -48,12 +48,12 @@
 
               <div id="ui-bars-container"> 
                 <div id="reload-bar-outer" class="outer-ui-bar">
-                  <img id="ui-gun-icon" src="/images/gun.png">
+                  <img id="ui-gun-icon" src="./public/images/gun.png">
                   <div id="reload-bar-inner" class="inner-ui-bar"></div>
                   <div id="reload-bar-inner-green" class="inner-ui-bar"></div>
                 </div>
                 <div id="boost-bar-outer" class="outer-ui-bar">
-                  <img src="/images/boost.png">
+                  <img src="./public/images/boost.png">
                   <div id="boost-bar-inner" class="inner-ui-bar"></div>
                   <div id="boost-bar-inner-green" class="inner-ui-bar"></div>
                 </div>
