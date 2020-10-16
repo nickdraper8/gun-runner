@@ -133,3 +133,14 @@ canvas {
     border: white 3px solid;
     cursor: default
 }
+
+.control {
+    margin: 10px auto;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#controls-menu p {
+    line-height: 3;
+}
