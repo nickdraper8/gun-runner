@@ -83,6 +83,7 @@ class GameView {
             document.querySelectorAll("#game-music")[0].pause();
             document.getElementById("background-gif").src = "/images/winterbackground_still.gif"
             document.getElementById("gameover-screen").classList.add("show");
+            document.getElementById("open-menu-btn-container").classList.add("show");
             // debugger
             if (this.handleHighscore()) {
                 document.getElementById("high-score-alert").innerHTML = `NEW HIGHSCORE: ${this.game.score} points`;
