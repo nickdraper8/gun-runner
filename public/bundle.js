@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/public/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 12);
@@ -423,9 +423,9 @@ class Player extends AnimatedObject {
 
     setupImages() {
         this.runningImg = new Image();
-        this.runningImg.src = `/images/Gunner_${this.color}_Run.png`;
+        this.runningImg.src = `../images/Gunner_${this.color}_Run.png`;
         this.jumpingImg = new Image();
-        this.jumpingImg.src = `/images/Gunner_${this.color}_Jump.png`;
+        this.jumpingImg.src = `../images/Gunner_${this.color}_Jump.png`;
 
         this.currentImage = this.runningImg
     }
@@ -2430,7 +2430,7 @@ class Obsticle extends StaticSpriteObject {
 
     setupImages() {
         this.treeImg = new Image();
-        this.treeImg.src = "/images/obsticle.png";
+        this.treeImg.src = "../images/obsticle.png";
 
         this.currentImage = this.treeImg
     }
@@ -2511,9 +2511,9 @@ class Enemy extends AnimatedObject {
 
     setupImages() {
         this.idleImg = new Image();
-        this.idleImg.src = "/images/Plasma_Drone_Idle.png";
+        this.idleImg.src = "../images/Plasma_Drone_Idle.png";
         this.explodeImg = new Image();
-        this.explodeImg.src = "/images/Plasma_Drone_Explode.png";
+        this.explodeImg.src = "../images/Plasma_Drone_Explode.png";
 
         this.currentImage = this.idleImg;
     }
@@ -2634,7 +2634,7 @@ class GameView {
         this.generateEnemies();
         this.generateObsticles();
         
-        document.getElementById("background-gif").src = "/images/winterbackground.gif"
+        document.getElementById("background-gif").src = "../images/winterbackground.gif"
         requestAnimationFrame(this.animate.bind(this));
     }
 
@@ -2666,7 +2666,7 @@ class GameView {
             requestAnimationFrame(this.animate.bind(this));
         } else {
             document.querySelectorAll("#game-music")[0].pause();
-            document.getElementById("background-gif").src = "/images/winterbackground_still.gif"
+            document.getElementById("background-gif").src = "../images/winterbackground_still.gif"
             document.getElementById("gameover-screen").classList.add("show");
             // debugger
             if (this.handleHighscore()) {

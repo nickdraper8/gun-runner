@@ -24,9 +24,9 @@ class Enemy extends AnimatedObject {
 
     setupImages() {
         this.idleImg = new Image();
-        this.idleImg.src = "/images/Plasma_Drone_Idle.png";
+        this.idleImg.src = "../images/Plasma_Drone_Idle.png";
         this.explodeImg = new Image();
-        this.explodeImg.src = "/images/Plasma_Drone_Explode.png";
+        this.explodeImg.src = "../images/Plasma_Drone_Explode.png";
 
         this.currentImage = this.idleImg;
     }
