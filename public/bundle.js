@@ -485,9 +485,9 @@ class Player extends AnimatedObject {
             
             setTimeout(this.animateReloadBar.bind(this), 100);
             setTimeout(this.reload.bind(this), 1000);
+
         }
     };
-
 
 }
 
