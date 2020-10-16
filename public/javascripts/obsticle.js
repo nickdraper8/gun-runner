@@ -23,7 +23,7 @@ class Obsticle extends StaticSpriteObject {
 
     setupImages() {
         this.treeImg = new Image();
-        this.treeImg.src = "../images/obsticle.png";
+        this.treeImg.src = "./public/images/obsticle.png";
 
         this.currentImage = this.treeImg
     }

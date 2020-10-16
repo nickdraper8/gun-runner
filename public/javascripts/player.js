@@ -44,9 +44,9 @@ class Player extends AnimatedObject {
 
     setupImages() {
         this.runningImg = new Image();
-        this.runningImg.src = `../images/Gunner_${this.color}_Run.png`;
+        this.runningImg.src = `./public/images/Gunner_${this.color}_Run.png`;
         this.jumpingImg = new Image();
-        this.jumpingImg.src = `../images/Gunner_${this.color}_Jump.png`;
+        this.jumpingImg.src = `./public/images/Gunner_${this.color}_Jump.png`;
 
         this.currentImage = this.runningImg
     }
