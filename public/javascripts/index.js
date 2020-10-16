@@ -47,6 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("high-score").innerHTML = `Highscore: ${localStorage.highScore}`;
     }
 
+    const colorMenuBtn = document.getElementById("open-color-menu-btn");
+    colorMenuBtn.addEventListener("click", () => {
+        document.getElementById("player-color-select-menu").classList.add("show");
+    })
+
+    const controlsMenuBtn = document.getElementById("open-controls-menu-btn");
+    controlsMenuBtn.addEventListener("click", () => {
+        document.getElementById("controls-menu").classList.add("show");
+    })
+
+    const closeColorsMenuBtn = document.getElementById("exit-colors-menu-btn");
+    closeColorsMenuBtn.addEventListener("click", () => {
+        document.getElementById("player-color-select-menu").classList.remove("show");
+    })
+
+    const closeControlsMenuBtn = document.getElementById("exit-controls-menu-btn");
+    closeControlsMenuBtn.addEventListener("click", () => {
+        document.getElementById("controls-menu").classList.remove("show");
+    })
+    
+
     const redColorBtn = document.getElementById("player-color-red");
     const blueColorBtn = document.getElementById("player-color-blue");
     const greenColorBtn = document.getElementById("player-color-green");
