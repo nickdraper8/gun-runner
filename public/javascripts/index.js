@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let color = localStorage.playerColor
         color = color.toLowerCase();
         document.getElementById(`player-color-${color}`).classList.add("selected");
+    } else {
+        redColorBtn.classList.add("selected");
+        localStorage.setItem('playerColor', "Red");
     }
     
     redColorBtn.addEventListener("click", () => {
