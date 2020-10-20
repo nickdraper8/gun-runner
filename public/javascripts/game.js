@@ -73,7 +73,11 @@ class Game {
 
     removeAllObjects() {
         this.allObjects().forEach(object => {
-            this.remove(object)
+            if (object instanceof Player) {
+                this.players.splice(this.players.indexOf(object), 1);
+            } else {
+                this.remove(object)
+            }
         })
     }
 
