@@ -18,7 +18,7 @@ class Enemy extends AnimatedObject {
         this.xOffset = 10;
         this.yOffset = 5;
 
-        this.fps = 2;
+        this.fps = 8;
 
     }
 
@@ -67,25 +67,25 @@ class Enemy extends AnimatedObject {
         return false;
     }
 
-    drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
-        ctx.drawImage(this.currentImage,
-                        frameX * this.spriteWidth, frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight,
-                        canvasX, canvasY, this.scaledWidth, this.scaledHeight);
-    }
+    // drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
+    //     ctx.drawImage(this.currentImage,
+    //                     frameX * this.spriteWidth, frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight,
+    //                     canvasX, canvasY, this.scaledWidth, this.scaledHeight);
+    // }
 
-    draw(ctx) {
-        this.frameCount += 1;
-        this.drawFrame(ctx, this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
-        if (this.frameCount < 10){
-            return
-        } else {
-            this.frameCount = 0;
-            this.currentLoopIndex++;
-            if (this.currentLoopIndex >= this.cycleLoop.length) {
-                this.currentLoopIndex = 0;
-            }
-        }
-    }
+    // draw(ctx) {
+    //     this.frameCount += 1;
+    //     this.drawFrame(ctx, this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
+    //     if (this.frameCount < 10){
+    //         return
+    //     } else {
+    //         this.frameCount = 0;
+    //         this.currentLoopIndex++;
+    //         if (this.currentLoopIndex >= this.cycleLoop.length) {
+    //             this.currentLoopIndex = 0;
+    //         }
+    //     }
+    // }
 
 
 }

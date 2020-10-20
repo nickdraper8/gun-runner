@@ -29,7 +29,7 @@ class Player extends AnimatedObject {
         // console.log(`Player VEL: ${this.vel}`)
         if (this.isFalling) {
             // debugger
-            this.vel[1] = this.vel[1] + (this.vel[1] * .1)
+            this.vel[1] = this.vel[1] + (this.vel[1] * .2)
             // debugger
             if (this.pos[1] >= 200) {
                 this.land()
@@ -106,9 +106,9 @@ class Player extends AnimatedObject {
             
             setTimeout(this.animateReloadBar.bind(this), 100);
             setTimeout(this.reload.bind(this), 1000);
+
         }
     };
-
 
 }
 

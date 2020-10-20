@@ -23,6 +23,10 @@ class GameView {
                 case "ArrowRight":
                     e.preventDefault();
                     game.dash();
+                    break
+                case "KeyR":
+                    game.removeAllObjects();
+                    break
             }
         })
     }
@@ -77,13 +81,14 @@ class GameView {
             this.game.draw(this.ctx);
             this.lastTime = time;
     
-            // every call to animate requests causes another call to animate
             requestAnimationFrame(this.animate.bind(this));
         } else {
+            this.game.removeAllObjects();
             document.querySelectorAll("#game-music")[0].pause();
             document.getElementById("background-gif").src = "/images/winterbackground_still.gif"
             document.getElementById("gameover-screen").classList.add("show");
-            // debugger
+            document.getElementById("open-menu-btn-container").classList.add("show");
+
             if (this.handleHighscore()) {
                 document.getElementById("high-score-alert").innerHTML = `NEW HIGHSCORE: ${this.game.score} points`;
                 document.getElementById("victory").play();
