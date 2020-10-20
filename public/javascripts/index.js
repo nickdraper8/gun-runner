@@ -112,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new GameView(game, ctx)
 
     document.addEventListener('keydown', (e) => {
-            // e.preventDefault();
-            // console.log(e.code);
             switch (e.code) {
                 case "KeyR":
                     newGame(ctx)
