@@ -156,6 +156,11 @@ I noticed that when I was first building out my `move` function for `MovingObjec
 ```
 In `move`, I use the `timeDelta` variable (which is the number of milliseconds since the last move) to determine the correct velocity of how far an object should move in a 60th of a second. If the computer is busy `timeDelta` should be larger, and if it is not busy it should be smaller. This allowed for more predictable movements of my objects across the screen regardless of whether or not the computer is busy or not and the time between frames is not consistent. 
 
+## Moving Forward
+In the future, I am going to be working implementing a couple new features. 
+- Weapon pickup system that will change the wait time between shooting bullets, or the nature of how the bullets move/fire (shotgun, machine gun, etc.)
+- Global Leaderboard. This will involve adding a simple backend and lightweight database, as well as moving the hosting service from GitHub pages to something like Heroku.
+- Themed levels. I would like for the background/theme to change when you reach a certain score. For example, at 10,000 points the background changes to a beach theme, enemies are now seagulls and obsticles are sandcastles.
 
 ## Assets Used
 Here is a list of recourses I used and the sources of where they came from:
