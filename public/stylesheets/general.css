@@ -23,6 +23,12 @@ main nav > div {
     margin-left: 25px;
 }
 
+main nav > h1 {
+    letter-spacing: 6px;
+    font-size: 31px;
+    text-transform: uppercase;
+}
+
 main nav #nav-links {
     display: flex;
     justify-content: space-evenly;
