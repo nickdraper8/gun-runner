@@ -1,63 +1,169 @@
-# [Gun Runner](https://nickdraper8.github.io/gun-runner/)
-A browser game by Nick Draper
+# [Gun Runner](https://nickdraper8.github.io/gun-runner/): A browser game by Nick Draper
 
-## Backgound
-Gun Runner is a sidescroller shooter where the player is able to jump over objects and shoot at enemies to clear their path. The player's character is static while the world moves towards them, having the player dodge incoming obsticles by jumping and shooting detroyable objects. 
+<img align="left" src="./7vxxne.gif" alt="player-running-gif">
 
-## Functionality & MVP
-In this browser game, players will be able to:
-* Controll the character, including jumping and shooting
-* View local and global highscores after game over
-* Start, pause, and reset the game
+## Background
+Gun Runner is a sidescroller shooter where the player is able to jump over objects and shoot at enemies to clear their path. The player's character is static while the world moves towards them, having the player dodge incoming obsticles by jumping over indestructable trees and shooting detroyable enemies flying above.
 
-In Addition, the project will include:
-* An About section describing the background, rules, and controls of the game'
-* A production README
-
-## Wireframes
-The app will consist of a single game view, where most of the information will be displayed. On arrival, the game view will display information about the game, including instructions, controls, and a background. On start of the game, the information will be replaced by the game, the environment moving left and the player staying stationary, giving the illusion of player movement towards the right. On game over, the game view will show the players score along with local high scores and global highscores. The player will have the option to log their nickname to input their highscore. On the right side of the game view there will be links to my LinkedIn, GitHub, and other sites to display more information about myself.
-<div style="text-align: center"><img src="wireframe.png" alt="wireframe"></div>
-
+<br><br/>
+<p align="center"><img src="./gunrunnerevensmaller.gif" alt="gameplay-gif"></p>
+<br><br/>
 
 ## Architecture and Technologies
-This project will be constructed with the following technologies:
+This project was constructed with the following technologies:
 * `JavaScript` for the game logic
 * `HTML Canvas` for rendering objects on the game view
+* `CSS` to give some style to the UI and website holding the canvas
 * `Webpack` to bundle js files
 
-In addition to the entry file, there will be multiple scripts involved in this project:
-* `view.js`: this will be handling the logic for and creating and updating the necessary elements and rendering them to the DOM. Holds instances of `Game`, creates a `canvas` context and installs key listeners to move your player and fire bullets.
-* `movingObject.js`: this will handle logic for basic movement of objects that will be moving anywhere inside the game view
-* `player.js`: this will handle user input and will be updated based on that user input and interations with other elements. A subclass of `MovingObject`
+In addition to the entry file, there are multiple scripts involved in this project:
+* `game_view.js`: this handles the logic for and creating and updating the necessary elements and rendering them to the DOM. Holds instances of `Game`, creates a `canvas` context and installs key listeners to move your player and fire bullets.
+* `moving_object.js`: this handles logic and drawing for basic movement of objects that will be moving anywhere inside the game view.
+* `animated_object.js`: this handles logic and drawing for objects that will be animated using sprite sheets. A subclass of `MovingObject`.
+* `static_sprite_object.js`: This handles logic and drawing for objects that are not animated but are drawn using an image file. A subclass of `MovingObject`.
+* `player.js`: this handles user input and is updated based on that user input and interations with other elements. A subclass of `AnimatedObject`.
 * `bullet.js`: kills enemies. A `MovingObject` subclass.
-* `obsticle.js`: this lightweight script will house the constructor and update functions for `Obsticle` objects. Each `Obsticle` will containe a `type`(enemy or block) and an `aliveState`(`true` or `false`). Also a `MovingObject` subclass.
-* `game.js`: Holds general structure, logic and rendering functions for the game
+* `obsticle.js`: this lightweight script houses the constructor and update functions for `Obsticle` objects. A `StaticSpriteObject` subclass.
+* `enemy.js`: this script houses the constructor and update functions for `Enemy` objects. An `AnimatedObject` subclass.
+* `game.js`: holds general structure, logic and rendering functions for the game
 
-## Implementation Timeline
-**Day 1:** Setup all necessary Node modules, including getting webpack up and running. Write a basic entry file and barebones of all scripts outlined above to have general structure of app completed. Goals for the day:
-  * Get a basic game view showing so that testing new logic for elements can be seen easily.
-  * Complete logic for `MovingObject` so I can move on to subclasses tomorrow
+## Technical Challenges
+I faced several challenges when building this project, here are a few examples.
 
-**Day 2:** Dedicate this day to the `MovingObject` subclasses and collision detection. First, build out the player class and be able to jump and fire bullet. Then, start moving obsticles towards the player. Then, create enemies that move up and down whille moving towards the player. Goals for the day:
-  * Get all `MovingObject` subclasses to move in the correct ways, and get collision testing to work
+### Animating Sprites
+This was more difficault than I anticipated, but I knew having animated sprites in my game was a must to give a real retro arcade atmosphere to my game. After finding a few nice looking sprite sheets online, I went to work researching how to animate sprites using HTML Canvas. 
+I ended up creating a new subclass of `MovingObject` called `AnimatedObject`, that would have its own `draw` method. Instead of drawing a square representing the object, it would instead draw the chosen image onto the canvas. Here is the code to draw the images:
+```
+// animated_object.js
+    drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
+            ctx.drawImage(this.currentImage,
+                            frameX * this.spriteWidth, frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight,
+                            canvasX, canvasY, this.scaledWidth, this.scaledHeight);
+        }
 
-**Day 3:** Get the game to procedurally generate. Research how to randomly generate new objects once old ones have moved off the page, and as the player survives for longer, have the obsticles move towards them faster. Goals for the day:
-  * Have the general gameplay working 100%. 
-  * Have obsitcles move towards the player, enemies can be shot and destroyed, blocks need to be avoided, and new ones render randomly when old blocks and enemies run off the screen left.
+        draw(ctx) {
+            this.frameCount += 1;
+            this.drawFrame(ctx, this.cycleLoop[this.currentLoopIndex], 0, this.pos[0]-this.xOffset, this.pos[1]-this.yOffset);
+            if (this.frameCount < this.fps){
+                return
+            } else {
+                this.frameCount = 0;
+                this.currentLoopIndex++;
+                if (this.currentLoopIndex >= this.cycleLoop.length) {
+                    this.currentLoopIndex = 0;
+                }
+            }
+        }
+```
+In `draw`, it keeps track of the `frameCount` and `currentLoopIndex` to decide what frames to draw and when to move to the next frame, creating the illusion of movement. `drawFrame` takes in the `currentLoopIndex` to know where to crop the sprite sheet, the context for the canvas, and the position on the canvas to draw the image.
 
-**Day 4:** Time to make it pretty. This day will be devoted to making the game as pretty as possible with the use of sprites, css, and other things to make the experience more enjoyable for the user. Goals for the day:
-  * Make the interface seamless, responsive, and easy to understand for the user
-  * Make the game look *cool*
+Furthermore, each sprite I used had different sizes, number of frames, etc. So I had to add a few extra variables in each class that used a specific sprite sheet so that I could use this function for any new `AnimatedObject` I wanted to add, and have the image be drawn on the page in the right spot, the right size and the right framerate. Here is the set up for the `Enemy` class:
+```
+// enemy.js
+class Enemy extends AnimatedObject {
+    constructor({ vel = [-10,0], color = '#B91C9C', height = 70, width = 40, scale = 1}) {
+        super({vel, color, height, width, scale});
 
-## Bonus Features
-There are many features I would like to implement in the future. Some anticipated updates are: 
-* Leaderboard (local and global)
-* Pickup different weapons that have different bullet properties (shotgun/missle launcher)
-* Tiered levels, meaning the player can jump up onto platforms and clime vertically.
+        this.setupImages();
+        this.cycleLoop = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+
+        this.spriteHeight = 90;
+        this.spriteWidth = 91;
+ 
+        this.scaledHeight = this.scale * this.spriteHeight;
+        this.scaledWidth = this.scale * this.spriteWidth;
+        
+        this.xOffset = 10;
+        this.yOffset = 5;
+
+        this.fps = 8;
+
+    }
+
+    setupImages() {
+        this.idleImg = new Image();
+        this.idleImg.src = "/images/Plasma_Drone_Idle.png";
+        this.explodeImg = new Image();
+        this.explodeImg.src = "/images/Plasma_Drone_Explode.png";
+
+        this.currentImage = this.idleImg;
+    }
+
+    collideWith(otherObject) {
+        if (this.currentImage === this.idleImg) {
+            if (otherObject instanceof Player) {
+                // console.log("Player collision with enemy")
+                return "gameover"
+            } else if (otherObject instanceof Bullet) {
+                // console.log("enemy explodes")
+                document.getElementById("explosion").currentTime = 0;
+                document.getElementById("explosion").play();
+                this.currentImage = this.explodeImg;
+                this.spriteHeight = 190;
+                this.spriteWidth = 190;
+                // this.cycleLoop = [0,1,2,3,4,5];
+                this.currentLoopIndex = 0;
+                this.scaledHeight = this.scale * this.spriteHeight;
+                this.scaledWidth = this.scale * this.spriteWidth;
+                this.xOffset = 60;
+                this.yOffset = 60;
+                otherObject.remove();
+                // debugger
+                return "enemykill";
+            }
+            return false;
+        }
+    };
+```
+Notice in `collideWith`, if the enemy is detroyed by a bullet, I change it's image to the exploding sprite sheet and change the variables used to determine how to draw it, since the size and amount of frames is different than the idle sprite sheet. This same strategy is done for the `player` class when jumping.
+
+### Unpredictable Object Movement
+I noticed that when I was first building out my `move` function for `MovingObjects`, all my objects seemed to be moving way too fast, and there seemed to be times when objects sped up or slowed down if my computer was heating up and becoming more busy. After some research and closer inspection of my code, I found out that between each animation frame the time would be longer or shorter between moves, which was causing this unpredictable movement. It seemed the answer was to create a `timeDelta` variable, which is the time now substracted by the time since the last animation frame. I create this variable in `game_view.js` and pass it through `game.js` to my `move` function in `moving_object.js`.
+```
+// game_view.js
+    animate(time) {
+            if (!this.game.gameover) {
+                const timeDelta = time - this.lastTime;
+
+                this.game.step(timeDelta);
+                this.game.draw(this.ctx);
+                this.lastTime = time;
+
+                requestAnimationFrame(this.animate.bind(this));
+```
+```
+// game.js
+    step(delta) {
+            this.moveObjects(delta);
+            this.players[0].update();
+            this.checkCollisions();
+
+            this.score += 1;
+        };
+```
+```
+// moving_object.js
+    move(timeDelta) {
+        const velocityScale = timeDelta / (1000/60);
+        const offsetX = this.vel[0] * velocityScale;
+        const offsetY = this.vel[1] * velocityScale;
+
+        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        if (this.game.isOutOfBounds(this.pos)) {
+            this.remove();
+        }
+    }
+```
+In `move`, I use the `timeDelta` variable (which is the number of milliseconds since the last move) to determine the correct velocity of how far an object should move in a 60th of a second. If the computer is busy `timeDelta` should be larger, and if it is not busy it should be smaller. This allowed for more predictable movements of my objects across the screen regardless of whether or not the computer is busy or not and the time between frames is not consistent. 
+
+## Moving Forward
+In the future, I am going to be working implementing a couple new features. 
+- Weapon pickup system that will change the wait time between shooting bullets, or the nature of how the bullets move/fire (shotgun, machine gun, etc.)
+- Global Leaderboard. This will involve adding a simple backend and lightweight database, as well as moving the hosting service from GitHub pages to something like Heroku.
+- Themed levels. I would like for the background/theme to change when you reach a certain score. For example, at 10,000 points the background changes to a beach theme, enemies are now seagulls and obsticles are sandcastles.
 
 ## Assets Used
 Here is a list of recourses I used and the sources of where they came from:
-Gun Runner Resources Used
 
 ### Sprites and Art:
 - Enemy sprites

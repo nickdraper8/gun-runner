@@ -11,7 +11,7 @@ class Game {
         this.bullets = [];
         this.enemies = [];
         this.animatedObjects = [];
-        this.gameover = false;
+        this.gameover = true;
         this.score = 0;
         this.dashReady = true;
     }
@@ -101,6 +101,15 @@ class Game {
     addObsticle() {
         const obsticle = new Obsticle({});
         obsticle.game = this
+
+        if (this.score > 10000) {
+            obsticle.vel = [-10,0];
+        } else if (this.score > 5000) {
+            obsticle.vel = [-9,0];
+        } else if (this.score > 2000) {
+            obsticle.bel = [-8,0];
+        }
+
         this.add(obsticle);
     }
 
@@ -110,6 +119,15 @@ class Game {
         let randomYCoord = Math.floor(Math.random() * (100 - 1 + 1) + 1);
         enemy.pos = [799, randomYCoord]
         enemy.game = this
+
+        if (this.score > 10000) {
+            enemy.vel = [-10,0];
+        } else if (this.score > 5000) {
+            enemy.vel = [-9,0];
+        } else if (this.score > 2000) {
+            enemy.bel = [-8,0];
+        }
+
         this.add(enemy);
     }
     
@@ -163,7 +181,15 @@ class Game {
                     object.fall();
                 }
             } else if (object instanceof Obsticle || object instanceof Enemy) {
-                object.vel = [-10,0]
+                if (this.score > 10000) {
+                    object.vel = [-10,0];
+                } else if (this.score > 5000) {
+                    object.vel = [-9,0];
+                } else if (this.score > 2000) {
+                    object.bel = [-8,0];
+                } else {
+                    object.vel = [-7,0];
+                }
             }
         })
     }

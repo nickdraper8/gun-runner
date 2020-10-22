@@ -381,7 +381,7 @@ const AnimatedObject = __webpack_require__ (3);
 const Bullet = __webpack_require__ (5);
 
 class Player extends AnimatedObject {
-    constructor({vel = [0,0], pos = [100, 220], height = 60, width = 48, scale = 2}) {
+    constructor({vel = [0,0], pos = [80, 220], height = 60, width = 30, scale = 2}) {
         super({vel, pos, height, width, scale});
         // this.setupImages();
         this.cycleLoop = [0,1,2,3,4,5];
@@ -398,7 +398,7 @@ class Player extends AnimatedObject {
 
         this.fps = 5;
 
-        this.xOffset = 15;
+        this.xOffset = 30;
         this.yOffset = 10;
 
     }
@@ -414,7 +414,7 @@ class Player extends AnimatedObject {
                 this.land()
             }
         } else if (this.isJumping) {
-            this.vel[1] *= .9;
+            this.vel[1] *= .84;
             if (this.vel[1] > -.5) {
                 this.fall();
             }
@@ -434,7 +434,7 @@ class Player extends AnimatedObject {
         if (!this.isJumping) {
             document.getElementById("jump").play();
             this.isJumping = true
-            this.vel = [0,-17]
+            this.vel = [0,-25]
             this.currentImage = this.jumpingImg
             this.cycleLoop = [0];
             this.currentLoopIndex = 0;
@@ -484,7 +484,7 @@ class Player extends AnimatedObject {
             document.getElementById("reload-bar-inner-green").classList.add("inner-bar-to-0");
             
             setTimeout(this.animateReloadBar.bind(this), 100);
-            setTimeout(this.reload.bind(this), 1000);
+            setTimeout(this.reload.bind(this), 700);
 
         }
     };
@@ -633,6 +633,10 @@ class AnimatedObject extends MovingObject {
                 this.currentLoopIndex = 0;
             }
         }
+        // uncomment below to see hitbox!
+
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height)
     }
 }
 
@@ -664,7 +668,10 @@ class MovingObject {
     }
 
     move(timeDelta) {
-        const velocityScale = timeDelta / (1000/60);
+        // debugger
+        // const velocityScale = timeDelta / (1000/60);
+        // debugger
+        const velocityScale = 1;
         const offsetX = this.vel[0] * velocityScale;
         const offsetY = this.vel[1] * velocityScale;
 
@@ -1201,7 +1208,7 @@ const newGame = (ctx) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    localStorage.setItem('gameover', 'true');
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext('2d');
 
@@ -1293,12 +1300,38 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     const game = new Game();
-    new GameView(game, ctx)
+    new GameView(game, ctx);
+
+    const newGameListener = (e) => {
+        switch (e.code) {
+                case "KeyR":
+                    debugger
+                    if (localStorage.getItem('gameover') === 'true') {
+                        debugger
+                        newGame(ctx)
+                    }
+                    break
+        }
+    }
+
+    document.addEventListener('keydown', newGameListener)
 
     document.addEventListener('keydown', (e) => {
             switch (e.code) {
-                case "KeyR":
-                    newGame(ctx)
+                case "KeyM":
+                    if (muteBtn.classList.contains("muted")) {
+                        muteBtn.classList.remove("muted");
+                        muteBtn.innerHTML = "MUTE"
+                        allSounds.forEach(element => {
+                            element.muted = false;
+                        })
+                    } else {
+                        muteBtn.classList.add("muted");
+                        muteBtn.innerHTML = "UNMUTE"
+                        allSounds.forEach(element => {
+                            element.muted = true;
+                        })
+                    }
                     break
             }
     })
@@ -2213,7 +2246,7 @@ class Game {
         this.bullets = [];
         this.enemies = [];
         this.animatedObjects = [];
-        this.gameover = false;
+        this.gameover = true;
         this.score = 0;
         this.dashReady = true;
     }
@@ -2303,6 +2336,15 @@ class Game {
     addObsticle() {
         const obsticle = new Obsticle({});
         obsticle.game = this
+
+        if (this.score > 10000) {
+            obsticle.vel = [-10,0];
+        } else if (this.score > 5000) {
+            obsticle.vel = [-9,0];
+        } else if (this.score > 2000) {
+            obsticle.bel = [-8,0];
+        }
+
         this.add(obsticle);
     }
 
@@ -2312,6 +2354,15 @@ class Game {
         let randomYCoord = Math.floor(Math.random() * (100 - 1 + 1) + 1);
         enemy.pos = [799, randomYCoord]
         enemy.game = this
+
+        if (this.score > 10000) {
+            enemy.vel = [-10,0];
+        } else if (this.score > 5000) {
+            enemy.vel = [-9,0];
+        } else if (this.score > 2000) {
+            enemy.bel = [-8,0];
+        }
+
         this.add(enemy);
     }
     
@@ -2365,7 +2416,15 @@ class Game {
                     object.fall();
                 }
             } else if (object instanceof Obsticle || object instanceof Enemy) {
-                object.vel = [-10,0]
+                if (this.score > 10000) {
+                    object.vel = [-10,0];
+                } else if (this.score > 5000) {
+                    object.vel = [-9,0];
+                } else if (this.score > 2000) {
+                    object.bel = [-8,0];
+                } else {
+                    object.vel = [-7,0];
+                }
             }
         })
     }
@@ -2435,7 +2494,7 @@ const StaticSpriteObject = __webpack_require__(34);
 const Player = __webpack_require__(1);
 
 class Obsticle extends StaticSpriteObject {
-    constructor({ pos = [799, 180], vel = [-10,0], color = '#FB921C', height = 100, width = 40, scale = .15}) {
+    constructor({ pos = [799, 200], vel = [-7,0], color = '#FB921C', height = 80, width = 40, scale = .15}) {
         super({pos, vel, color, height, width, scale});
 
         this.setupImages();
@@ -2450,7 +2509,7 @@ class Obsticle extends StaticSpriteObject {
         this.scaledWidth = this.scale * this.spriteWidth;
 
         this.xOffset = 52;
-        this.yOffset = 20;
+        this.yOffset = 50;
 
     }
 
@@ -2516,7 +2575,7 @@ const Player = __webpack_require__(1);
 const Bullet = __webpack_require__(5);
 
 class Enemy extends AnimatedObject {
-    constructor({ vel = [-10,0], color = '#B91C9C', height = 70, width = 40, scale = 1}) {
+    constructor({ vel = [-7,0], color = '#B91C9C', height = 70, width = 40, scale = 1}) {
         super({vel, color, height, width, scale});
 
         this.setupImages();
@@ -2635,9 +2694,9 @@ class GameView {
                     e.preventDefault();
                     game.dash();
                     break
-                case "KeyR":
-                    game.removeAllObjects();
-                    break
+                // case "KeyR":
+                //     game.removeAllObjects();
+                //     break
             }
         })
     }
@@ -2659,6 +2718,9 @@ class GameView {
     }
 
     start() {
+        this.game.gameover = false;
+        localStorage.setItem('gameover', false);
+        debugger
         this.bindKeyHandlers();
         this.lastTime = 0;
         this.generateEnemies();
@@ -2694,6 +2756,7 @@ class GameView {
     
             requestAnimationFrame(this.animate.bind(this));
         } else {
+            localStorage.setItem('gameover', 'true');
             this.game.removeAllObjects();
             document.querySelectorAll("#game-music")[0].pause();
             document.getElementById("background-gif").src = "./public/images/winterbackground_still.gif"

@@ -3,7 +3,7 @@ const Player = require("./player");
 const Bullet = require("./bullet");
 
 class Enemy extends AnimatedObject {
-    constructor({ vel = [-10,0], color = '#B91C9C', height = 70, width = 40, scale = 1}) {
+    constructor({ vel = [-7,0], color = '#B91C9C', height = 70, width = 40, scale = 1}) {
         super({vel, color, height, width, scale});
 
         this.setupImages();

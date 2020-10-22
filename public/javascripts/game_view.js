@@ -24,9 +24,9 @@ class GameView {
                     e.preventDefault();
                     game.dash();
                     break
-                case "KeyR":
-                    game.removeAllObjects();
-                    break
+                // case "KeyR":
+                //     game.removeAllObjects();
+                //     break
             }
         })
     }
@@ -48,6 +48,9 @@ class GameView {
     }
 
     start() {
+        this.game.gameover = false;
+        localStorage.setItem('gameover', false);
+        debugger
         this.bindKeyHandlers();
         this.lastTime = 0;
         this.generateEnemies();
@@ -83,6 +86,7 @@ class GameView {
     
             requestAnimationFrame(this.animate.bind(this));
         } else {
+            localStorage.setItem('gameover', 'true');
             this.game.removeAllObjects();
             document.querySelectorAll("#game-music")[0].pause();
             document.getElementById("background-gif").src = "./public/images/winterbackground_still.gif"
