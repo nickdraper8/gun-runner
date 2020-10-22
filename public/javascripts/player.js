@@ -2,7 +2,7 @@ const AnimatedObject = require ("./animated_object");
 const Bullet = require ("./bullet");
 
 class Player extends AnimatedObject {
-    constructor({vel = [0,0], pos = [100, 220], height = 60, width = 48, scale = 2}) {
+    constructor({vel = [0,0], pos = [80, 220], height = 60, width = 30, scale = 2}) {
         super({vel, pos, height, width, scale});
         // this.setupImages();
         this.cycleLoop = [0,1,2,3,4,5];
@@ -19,7 +19,7 @@ class Player extends AnimatedObject {
 
         this.fps = 5;
 
-        this.xOffset = 15;
+        this.xOffset = 30;
         this.yOffset = 10;
 
     }
@@ -35,7 +35,7 @@ class Player extends AnimatedObject {
                 this.land()
             }
         } else if (this.isJumping) {
-            this.vel[1] *= .9;
+            this.vel[1] *= .84;
             if (this.vel[1] > -.5) {
                 this.fall();
             }
@@ -55,7 +55,7 @@ class Player extends AnimatedObject {
         if (!this.isJumping) {
             document.getElementById("jump").play();
             this.isJumping = true
-            this.vel = [0,-17]
+            this.vel = [0,-25]
             this.currentImage = this.jumpingImg
             this.cycleLoop = [0];
             this.currentLoopIndex = 0;
@@ -105,7 +105,7 @@ class Player extends AnimatedObject {
             document.getElementById("reload-bar-inner-green").classList.add("inner-bar-to-0");
             
             setTimeout(this.animateReloadBar.bind(this), 100);
-            setTimeout(this.reload.bind(this), 1000);
+            setTimeout(this.reload.bind(this), 800);
 
         }
     };

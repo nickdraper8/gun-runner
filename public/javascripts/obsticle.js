@@ -2,7 +2,7 @@ const StaticSpriteObject = require("./static_sprite_object");
 const Player = require("./player");
 
 class Obsticle extends StaticSpriteObject {
-    constructor({ pos = [799, 180], vel = [-10,0], color = '#FB921C', height = 100, width = 40, scale = .15}) {
+    constructor({ pos = [799, 200], vel = [-7,0], color = '#FB921C', height = 80, width = 40, scale = .15}) {
         super({pos, vel, color, height, width, scale});
 
         this.setupImages();
@@ -17,7 +17,7 @@ class Obsticle extends StaticSpriteObject {
         this.scaledWidth = this.scale * this.spriteWidth;
 
         this.xOffset = 52;
-        this.yOffset = 20;
+        this.yOffset = 50;
 
     }
 

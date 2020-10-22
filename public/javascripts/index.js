@@ -20,7 +20,7 @@ const newGame = (ctx) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    localStorage.setItem('gameover', 'true');
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext('2d');
 
@@ -109,12 +109,38 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     const game = new Game();
-    new GameView(game, ctx)
+    new GameView(game, ctx);
+
+    const newGameListener = (e) => {
+        switch (e.code) {
+                case "KeyR":
+                    debugger
+                    if (localStorage.getItem('gameover') === 'true') {
+                        debugger
+                        newGame(ctx)
+                    }
+                    break
+        }
+    }
+
+    document.addEventListener('keydown', newGameListener)
 
     document.addEventListener('keydown', (e) => {
             switch (e.code) {
-                case "KeyR":
-                    newGame(ctx)
+                case "KeyM":
+                    if (muteBtn.classList.contains("muted")) {
+                        muteBtn.classList.remove("muted");
+                        muteBtn.innerHTML = "MUTE"
+                        allSounds.forEach(element => {
+                            element.muted = false;
+                        })
+                    } else {
+                        muteBtn.classList.add("muted");
+                        muteBtn.innerHTML = "UNMUTE"
+                        allSounds.forEach(element => {
+                            element.muted = true;
+                        })
+                    }
                     break
             }
     })
