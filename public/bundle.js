@@ -484,7 +484,7 @@ class Player extends AnimatedObject {
             document.getElementById("reload-bar-inner-green").classList.add("inner-bar-to-0");
             
             setTimeout(this.animateReloadBar.bind(this), 100);
-            setTimeout(this.reload.bind(this), 800);
+            setTimeout(this.reload.bind(this), 700);
 
         }
     };
