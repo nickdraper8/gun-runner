@@ -33,7 +33,7 @@ I faced several challenges when building this project, here are a few examples.
 ### Animating Sprites
 This was more difficault than I anticipated, but I knew having animated sprites in my game was a must to give a real retro arcade atmosphere to my game. After finding a few nice looking sprite sheets online, I went to work researching how to animate sprites using HTML Canvas. 
 I ended up creating a new subclass of `MovingObject` called `AnimatedObject`, that would have its own `draw` method. Instead of drawing a square representing the object, it would instead draw the chosen image onto the canvas. Here is the code to draw the images:
-```
+```Javascript
 // animated_object.js
     drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
             ctx.drawImage(this.currentImage,
@@ -58,7 +58,7 @@ I ended up creating a new subclass of `MovingObject` called `AnimatedObject`, th
 In `draw`, it keeps track of the `frameCount` and `currentLoopIndex` to decide what frames to draw and when to move to the next frame, creating the illusion of movement. `drawFrame` takes in the `currentLoopIndex` to know where to crop the sprite sheet, the context for the canvas, and the position on the canvas to draw the image.
 
 Furthermore, each sprite I used had different sizes, number of frames, etc. So I had to add a few extra variables in each class that used a specific sprite sheet so that I could use this function for any new `AnimatedObject` I wanted to add, and have the image be drawn on the page in the right spot, the right size and the right framerate. Here is the set up for the `Enemy` class:
-```
+```Javascript
 // enemy.js
 class Enemy extends AnimatedObject {
     constructor({ vel = [-10,0], color = '#B91C9C', height = 70, width = 40, scale = 1}) {
@@ -119,7 +119,7 @@ Notice in `collideWith`, if the enemy is detroyed by a bullet, I change it's ima
 
 ### Unpredictable Object Movement
 I noticed that when I was first building out my `move` function for `MovingObjects`, all my objects seemed to be moving way too fast, and there seemed to be times when objects sped up or slowed down if my computer was heating up and becoming more busy. After some research and closer inspection of my code, I found out that between each animation frame the time would be longer or shorter between moves, which was causing this unpredictable movement. It seemed the answer was to create a `timeDelta` variable, which is the time now substracted by the time since the last animation frame. I create this variable in `game_view.js` and pass it through `game.js` to my `move` function in `moving_object.js`.
-```
+```Javascript
 // game_view.js
     animate(time) {
             if (!this.game.gameover) {
@@ -131,7 +131,7 @@ I noticed that when I was first building out my `move` function for `MovingObjec
 
                 requestAnimationFrame(this.animate.bind(this));
 ```
-```
+```Javascript
 // game.js
     step(delta) {
             this.moveObjects(delta);
@@ -141,7 +141,7 @@ I noticed that when I was first building out my `move` function for `MovingObjec
             this.score += 1;
         };
 ```
-```
+```Javascript
 // moving_object.js
     move(timeDelta) {
         const velocityScale = timeDelta / (1000/60);
