@@ -9,6 +9,17 @@ Gun Runner is a sidescroller shooter where the player is able to jump over objec
 <p align="center"><img src="./gunrunnerevensmaller.gif" alt="gameplay-gif"></p>
 <br><br/>
 
+## Features
+* Ability to jump, dash, and fire your gun to avoid trees and destroy enemy robots flying above
+* Local highscore is saved in local storage, so the player can try and beat it everytime they open the game
+* Game slowly increases in difficaulty by speeding up the incoming objects
+* Intricate backstory and character development revealed in the info panel(not really)
+* Fun retro arcade music and sound effects for actions
+* Mute and unmute game music and sounds
+* Pick to play as 4 different colored characters
+
+<p align="center"><img src="./changecolor.gif" alt="color-gif"></p>
+
 ## Architecture and Technologies
 This project was constructed with the following technologies:
 * `JavaScript` for the game logic
@@ -33,6 +44,9 @@ I faced several challenges when building this project, here are a few examples.
 ### Animating Sprites
 This was more difficault than I anticipated, but I knew having animated sprites in my game was a must to give a real retro arcade atmosphere to my game. After finding a few nice looking sprite sheets online, I went to work researching how to animate sprites using HTML Canvas. 
 I ended up creating a new subclass of `MovingObject` called `AnimatedObject`, that would have its own `draw` method. Instead of drawing a square representing the object, it would instead draw the chosen image onto the canvas. Here is the code to draw the images:
+
+<p align="center"><img src="./closer.gif" alt="closer-gif"></p>
+
 ```Javascript
 // animated_object.js
     drawFrame(ctx, frameX, frameY, canvasX, canvasY) {
