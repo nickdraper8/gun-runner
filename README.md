@@ -131,44 +131,28 @@ class Enemy extends AnimatedObject {
 ```
 Notice in `collideWith`, if the enemy is detroyed by a bullet, I change it's image to the exploding sprite sheet and change the variables used to determine how to draw it, since the size and amount of frames is different than the idle sprite sheet. This same strategy is done for the `player` class when jumping.
 
-### Unpredictable Object Movement
-I noticed that when I was first building out my `move` function for `MovingObjects`, all my objects seemed to be moving way too fast, and there seemed to be times when objects sped up or slowed down if my computer was heating up and becoming more busy. After some research and closer inspection of my code, I found out that between each animation frame the time would be longer or shorter between moves, which was causing this unpredictable movement. It seemed the answer was to create a `timeDelta` variable, which is the time now substracted by the time since the last animation frame. I create this variable in `game_view.js` and pass it through `game.js` to my `move` function in `moving_object.js`.
-```Javascript
+### Utilizing LocalStorage to Solve Different Problems
+I faced two problems during this project, both of which were solved after some research when I learned more about the capabilities of the browser's local storage and JavaScripts ability to interact with it. 
+
+#### Leaderboard / HighScore
+I wanted desperatly for there to be a leaderboard or at least a highscore feature so that the game might be more addicting to play, however this was purely a front-end project and it was no way connected to a database. I needed to find someway to save the users highscore somewhere without it getting overwritten. After a bit of research I saw that you can store cookies on the users browser and access them even on new and different sessions(given the user hasn't cleared their cookies). I went to work to implement the highscore function so that the user would hopefully be motivated to keep playing in order to beat their highscore.
+
+The below function was run after a gameover to update the highscore if the current score is greater, then return true or false so that different end-game sounds/visuals would pop-up.
+```javascript
 // game_view.js
-    animate(time) {
-            if (!this.game.gameover) {
-                const timeDelta = time - this.lastTime;
+    handleHighscore() {
+        var highScore = localStorage.getItem('highScore') || 0;
 
-                this.game.step(timeDelta);
-                this.game.draw(this.ctx);
-                this.lastTime = time;
-
-                requestAnimationFrame(this.animate.bind(this));
-```
-```Javascript
-// game.js
-    step(delta) {
-            this.moveObjects(delta);
-            this.players[0].update();
-            this.checkCollisions();
-
-            this.score += 1;
-        };
-```
-```Javascript
-// moving_object.js
-    move(timeDelta) {
-        const velocityScale = timeDelta / (1000/60);
-        const offsetX = this.vel[0] * velocityScale;
-        const offsetY = this.vel[1] * velocityScale;
-
-        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
-        if (this.game.isOutOfBounds(this.pos)) {
-            this.remove();
+        if (this.game.score > highScore) {
+            highScore = parseInt(this.game.score);
+            localStorage.setItem('highScore', highScore);
+            document.getElementById("high-score").innerHTML = `Highscore: ${highScore}`;
+            return true
         }
+        return false;
     }
 ```
-In `move`, I use the `timeDelta` variable (which is the number of milliseconds since the last move) to determine the correct velocity of how far an object should move in a 60th of a second. If the computer is busy `timeDelta` should be larger, and if it is not busy it should be smaller. This allowed for more predictable movements of my objects across the screen regardless of whether or not the computer is busy or not and the time between frames is not consistent. 
+In the future, I plan to implement a global leaderboard so that users can see what other users have scored and compete. However, I will need to integrate some sort of light back-end and database for this.
 
 ## Moving Forward
 In the future, I am going to be working implementing a couple new features. 
